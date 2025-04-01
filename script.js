@@ -46,6 +46,7 @@ function advanceDialogue(){
             console.log(buttonHtml);
         }
         document.getElementById("buttonDisplay").innerHTML = buttonHtml;
+        body.removeEventListener("click",advanceDialogue);
     }
 }
 
