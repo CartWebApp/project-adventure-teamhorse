@@ -26,18 +26,18 @@ class storyPart {
         this.options = options;
     }
 }
-let currentPart = new storyPart(0,[`Test1`,`TestTwo`,`Test3engf`],[`Option 1`, `Option 2`, `option 3`])
+let currentPart = new storyPart(0,[`Test1`,`TestTwosd`,`Test3engf`],[`Option 1`, `Option 2`, `option 3`])
 
 const firstEnemy = new monster("Goblin",5);
 
 const body = document.getElementById("fullBody");
 body.addEventListener("click",advanceDialogue);
 
-document.getElementById("textDisplay").textContent = currentPart.dialogue[0];
+textType(document.getElementById("textDisplay"), currentPart.dialogue[0])
 function advanceDialogue(){
     if (currentPart.dialogue.length - 1 > currentDialogueNumber){
         currentDialogueNumber += 1;
-        document.getElementById("textDisplay").textContent = currentPart.dialogue[currentDialogueNumber];
+        textType(document.getElementById("textDisplay"), currentPart.dialogue[currentDialogueNumber])
     } else {
         currentDialogueNumber = 0;
         let buttonHtml = ``;
@@ -47,4 +47,18 @@ function advanceDialogue(){
         }
         document.getElementById("buttonDisplay").innerHTML = buttonHtml;
     }
+}
+
+function textType(element, text, i = 0){
+    if (i === 0){
+        element.textContent = ``;
+    }
+
+    element.textContent += text[i];
+
+    if(i === text.length - 1){
+        return;
+    }
+
+    setTimeout(() => textType(element, text, i + 1), 35);
 }
