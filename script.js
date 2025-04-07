@@ -163,7 +163,14 @@ function textType(element, text, i = 0){
 }
 
 function fish(){
-
+    let fish = Math.floor(Math.random() * 15);
+    let cast = 5
+    if (fish === cast) {
+        alert('YOU DID IT HUZZAH')
+        player.fish += 1
+    } else {
+        alert('YOU SUCK')
+    }
 }
 
 
