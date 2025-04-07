@@ -80,6 +80,11 @@ const firstTown = new storyPart()
 
 function Fight(storyFight){
     let buttonHtml = ``;
+    // Generates a random number between 0 and 2
+    // enemyChoice # meanings
+    // 0: enemy attacks
+    // 1: enemy defends
+    // 2: enemy waits
     let enemyChoice = Math.floor(((Math.random() + Math.random()) / 2) * 3); 
     buttonHtml += `<button id="attack" class="options">Attack</button>`;
     buttonHtml += `<button id="defend" class="options">Defend</button>`;
@@ -90,9 +95,22 @@ function Fight(storyFight){
         document.getElementById("buttonDisplay").innerHTML = buttonHtml;
         document.getElementById(`telepathy`).addEventListener("click",);
     };
-    document.getElementById(`attack`).addEventListener("click",);
+    document.getElementById(`attack`).addEventListener("click", () => {
+        if(enemyChoice == 0){
+            
+        }
+        if(enemyChoice == 1){
+            
+        }
+        if(enemyChoice == 2){
+            
+        }
+        
+    });
     document.getElementById(`defend`).addEventListener("click",);
     document.getElementById(`wait`).addEventListener("click",);
+    
+
 
 }
 
