@@ -1,6 +1,6 @@
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
-let textSpeed = 10;
+let textSpeed = 0;
 const player = {
     health: 3,
     // Companion # meaning
@@ -16,6 +16,8 @@ const player = {
         fish: 0,
     },
     losses: 0,
+    attack: 1,
+    telepathy: 3,
 };
 
 class monster {
@@ -45,13 +47,13 @@ class storyPart {
 }
 
 class fight {
-    constructor(dialogue,monster, companion = 0, first = false){
+    constructor(dialogue , monster, companion = 0){
         this.dialogue = dialogue
         this.monster = monster;
         this.companion = companion;
-        this.first = first;
     }
 }
+const firstFight = new fight("",firstMonster,player.companion);
 
 // All story parts go below this line. 
 const firstLeft = new storyPart(`1a`,[``,`You are met with a clearing allowing for safe travel forward, but you can hear water flowing from a river. It might be a good idea to go fishing before continuing forward.`],[{name: "Go fishing", effect: ()=> moveTo(secondLeft),}, {name: "Continue without fishing", effect: ()=> moveTo(secondLeft),}]);
@@ -59,9 +61,9 @@ const secondLeft = new storyPart(`1b`,[``,`You continue to the clearing ahead bu
 const firstMiddle = new storyPart(`2a`,[``,`You continue down the middle, but you quickly realize that the path ahead is blocked by a huge boulder about the size of a small house.`,`‘This wasn’t here before.’ You question the mysterious boulder, but there is nothing you can do about it.`,`You decide to go around it either to the right or left. Korai seems to want to go left.`],[{name: "Go back left", effect: ()=> moveTo(secondMiddle),} ,{name: "Go back right", effect: ()=> moveTo(thirdMiddle),}]);
 const secondMiddle = new storyPart(`2b`,[``,`You reach a clearing and are ambushed by a group of hooded figures.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: "",}]);
 const thirdMiddle = new storyPart(`2c`,[``,`You go right to avoid the boulder, but are very quickly ambushed by hooded figures hiding in the nearby shrubbery.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: "",}]);
-const firstRight = new storyPart(`3a`,[``,`You decide to go right and take in the scenery as Korai strolls towards town.`,`“Rooooooaaaaar.”`,`Your peace is interrupted by a chilling roar and you realize too late that you have come face to face with a monster.`,`The monster attacks. You are knocked off of Korai and scramble to your feet.`,`Korai is startled and begins to thrash around violently. Scared beyond reason, you run.`,`After running for a while you realize that you can’t just leave your best friend behind, but that you have no chance of winning.`,`You can’t decide whether you should go back and fight or run towards town for help. `],[{name: "Go Back for Korai", effect: "",}, {name: "Go to Town for Help", effect: ()=> moveTo(secondRight),}]);
+const firstRight = new storyPart(`3a`,[``,`You decide to go right and take in the scenery as Korai strolls towards town.`,`“Rooooooaaaaar.”`,`Your peace is interrupted by a chilling roar and you realize too late that you have come face to face with a monster.`,`The monster attacks. You are knocked off of Korai and scramble to your feet.`,`Korai is startled and begins to thrash around violently. Scared beyond reason, you run.`,`After running for a while you realize that you can’t just leave your best friend behind, but that you have no chance of winning.`,`You can’t decide whether you should go back and fight or run towards town for help. `],[{name: "Go Back for Korai", effect: ()=> Fight(firstFight),}, {name: "Go to Town for Help", effect: ()=> moveTo(secondRight),}]);
 const secondRight = new storyPart(`3b`,[``,`You run towards town as fast as you can.`],[{name: "Reach Town", effect: ()=> moveTo(firstTown),}])
-const firstFight = new fight(firstMonster,player.companion,true);
+const firstFightWin = new storyPart(`3c`,[``,`You narrowly win against the monster and reunite with Korai.`,`You ride Korai back to your house and take the long way to the village.`,`As you ride you vow to never venture too deep into the forest and to never try something so frightening ever again.`,`THE END \n However, there are many other ways your story could've played out.`],[{name: "Restart Game", effect: ()=> moveTo(beginning),}]);
 
 
 const firstTown = new storyPart()
@@ -85,7 +87,7 @@ function Fight(storyFight){
     // 0: enemy attacks
     // 1: enemy defends
     // 2: enemy waits
-    let enemyChoice = Math.floor(((Math.random() + Math.random()) / 2) * 3); 
+    let enemyChoice = Math.floor(((Math.random())) * 3); 
     buttonHtml += `<button id="attack" class="options">Attack</button>`;
     buttonHtml += `<button id="defend" class="options">Defend</button>`;
     buttonHtml += `<button id="wait" class="options">Wait</button>`;
@@ -97,40 +99,181 @@ function Fight(storyFight){
     };
     document.getElementById(`attack`).addEventListener("click", () => {
         if(enemyChoice == 0){
-            
+            textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, but they also attacked and both of you took damage`);
+            player.health -= 1;
+            storyFight.monster.health -= player.attack;
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
         }
         if(enemyChoice == 1){
-            
+            textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, but they blocked your attack, rendering it useless.`);
+            player.health -= 0.5;
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
         }
         if(enemyChoice == 2){
-            
+            textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, and they were caught off guard by the quick attack.`);
+            storyFight.monster.health -= player.attack;
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
         }
         
     });
-    document.getElementById(`defend`).addEventListener("click",);
-    document.getElementById(`wait`).addEventListener("click",);
+    document.getElementById(`defend`).addEventListener("click", () => {
+        if(enemyChoice == 0){
+            textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, and it blocked their attack, allowing for a counter attack.`);
+            storyFight.monster.health -= (player.attack/2);
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        if(enemyChoice == 1){
+            textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, but they also attempted to block, leaving no progress to be made in the battle.`);
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        if(enemyChoice == 2){
+            textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, but they were waiting for your block and countered it without repercussion.`);
+            player.health -= 1;
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        
+    });
+    document.getElementById(`wait`).addEventListener("click", () => {
+        if(enemyChoice == 0){
+            textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, but they just attacked, leading to you taking damage.`);
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        if(enemyChoice == 1){
+            textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, and it worked, leading to a successful attack on ${storyFight.monster.name}.`);
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        if(enemyChoice == 2){
+            textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, but they had the same plan, leading to both of you awkwardly standing in place doing nothing.`);
+            if(player.health <= 0){
+                fightLose(storyFight)
+                return
+            }
+            if(storyFight.monster.health <= 0){
+                fightWin(storyFight)
+                return
+            }
+            Fight(storyFight)
+        }
+        
+    });
     
 
 
 }
 
+function fightWin(storyFight){
+    document.getElementById("textDisplay").innerText = ``;
+    if(storyFight.monster.ending === 1){
+        moveTo(firstFightWin);
+    } else if (storyFight.monster.ending === 2){
+        moveTo();
+    } else if (storyFight.monster.ending === 3){
+        moveTo();
+    } else {
+        if (player.losses === 2){
+            moveTo();
+        }
+        
+    }
+}
 
+function fightLose(storyFight){
+    document.getElementById("textDisplay").innerText = ``;
+    if(storyFight.monster.ending === 1){
+        moveTo(secondRight);
+    } else if (storyFight.monster.ending === 2){
+        moveTo();
+    } else if (storyFight.monster.ending === 3){
+        moveTo();
+    } else {
+        player.losses += 1
+        if (player.losses === 2){
+            moveTo();
+        }
 
-let currentPart = {}
-currentPart = new storyPart(`0`,[`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}])
+    }
+}
+
+let currentPart = {};
+const beginning = new storyPart(`0`,[`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
+currentPart = beginning;
 setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 10) * (textSpeed + 1)));
 
 const body = document.getElementById("fullBody");
 setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 10) * textSpeed))
 const arrow = document.getElementById("textBoxArrow");
 
-textType(document.getElementById("textDisplay"), currentPart.dialogue[0])
+textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
 function advanceDialogue(){
     body.removeEventListener("click",advanceDialogue);
     arrow.style.opacity = 0;
     if (currentPart.dialogue.length - 1 > currentDialogueNumber){
         currentDialogueNumber += 1;
-        textType(document.getElementById("textDisplay"), currentPart.dialogue[currentDialogueNumber])
+        textType(document.getElementById("textDisplay"), currentPart.dialogue[currentDialogueNumber]);
         setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 10) * (textSpeed + 1)));
         setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 4) * textSpeed))
     } else {
