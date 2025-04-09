@@ -65,10 +65,14 @@ body {
     background-color: bisque;
 }
 
-
+#eggDisplay {
+    position: absolute;
+    width: 100%;
+}
 
 @keyframes arrowBob {
     0% {top: 0px;}
     50% {top: 5px;}
     100% {top: 0px;}
 }
+
