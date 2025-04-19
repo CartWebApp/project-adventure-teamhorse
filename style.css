@@ -4,7 +4,10 @@ body {
     background-repeat: no-repeat;
     background-color: black;
     background-position-x: center;
+    margin: 0;
+    height: 100vh;
 }
+
 
 body {
     display: flex;
@@ -39,7 +42,7 @@ body {
     padding: 0rem 1rem;
     text-align: left;
     width: 35%;
-    height: 5rem;
+    min-height: 5rem;
     align-self: center;
     color: white;
     background-color: black;
@@ -67,8 +70,22 @@ body {
 
 #eggDisplay {
     position: absolute;
-    width: 100%;
+    width: 90vw;
+    height: 100vh;
+    align-self: center;
+    z-index: -1;
 }
+
+.egg {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.egg img{
+    width: 3vw;
+}
+
 
 @keyframes arrowBob {
     0% {top: 0px;}
