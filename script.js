@@ -17,7 +17,7 @@ const player = {
     },
     losses: 0,
     attack: 1,
-    telepathy: 3,
+    telepathy: 0,
 };
 
 class monster {
@@ -57,6 +57,7 @@ const firstFight = new fight("",firstMonster,player.companion);
 
 // Example story part
 // In dialogue LEAVE A BLANK STRING AS THE FIRST ELEMENT IN THE ARRAY.
+// If you are creating an ending, use the reset() funcition after the arrow in effect instead of moveTo() for options to restart the game.
 const example = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 
 // All story parts go below this line. 
@@ -66,12 +67,12 @@ const firstMiddle = new storyPart(`2a`,[``,`You continue down the middle, but yo
 const secondMiddle = new storyPart(`2b`,[``,`You reach a clearing and are ambushed by a group of hooded figures.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: ()=> moveTo(firstTown),}]);
 const thirdMiddle = new storyPart(`2c`,[``,`You go right to avoid the boulder, but are very quickly ambushed by hooded figures hiding in the nearby shrubbery.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: ()=> moveTo(firstTown),}]);
 const firstRight = new storyPart(`3a`,[``,`You decide to go right and take in the scenery as Korai strolls towards town.`,`“Rooooooaaaaar.”`,`Your peace is interrupted by a chilling roar and you realize too late that you have come face to face with a monster.`,`The monster attacks. You are knocked off of Korai and scramble to your feet.`,`Korai is startled and begins to thrash around violently. Scared beyond reason, you run.`,`After running for a while you realize that you can’t just leave your best friend behind, but that you have no chance of winning.`,`You can’t decide whether you should go back and fight or run towards town for help. `],[{name: "Go Back for Korai", effect: ()=> Fight(firstFight),}, {name: "Go to Town for Help", effect: ()=> moveTo(secondRight),}]);
-const secondRight = new storyPart(`3b`,[``,`You are cornered by the monster and barely escape with your life.`,`You hurry towards town to get help.`],[{name: "Reach Town", effect: ()=> moveTo(firstTown),}])
-const firstFightWin = new storyPart(`E1`,[``,`Your attack deals the final blow to the monster`,`You breathe a sigh of relief as you reunite with Korai.`,`You ride Korai back to your house and take the long way to the village.`,`As you ride you vow to never venture too deep into the forest and to never try something so frightening ever again.`,`THE END \n However, there are many other ways your story could've played out.`],[{name: "Restart Game", effect: ()=> moveTo(beginning),}]);
+const secondRight = new storyPart(`3b`,[``,`You are cornered by the monster and barely escape with your life.`,`You hurry towards town to get help.`],[{name: "Reach Town", effect: ()=> {player.health = 1; moveTo(firstTown);}}])
+const firstFightWin = new storyPart(`E1`,[``,`Your attack deals the final blow to the monster`,`You breathe a sigh of relief as you reunite with Korai.`,`You ride Korai back to your house and take the long way to the village.`,`As you ride you vow to never venture too deep into the forest and to never try something so frightening ever again.`,`THE END \n However, there are many other ways your story could've played out.`],[{name: "Restart Game", effect: ()=> reset()}]);
 const firstTown = new storyPart(`4a`,[``,`You arrive at town and are met with a decision.`,`Do you report what happened to the mayor or to the local knights?`,`You have never met the mayor before and worry that he will ignore you, but the knights are a small group and constantly busy keeping the town safe.`,`There is no guarantee either will be able to help you.`,`Who should you choose?`],[{name: "Talk to the Mayor", effect: ()=> moveTo(talkedToMayor),},{name: `Speak to the town knights`,effect: ()=> moveTo(talkedToKnights)}])
 const talkedToMayor = new storyPart(`4b`,[``,`You quickly head towards Town Hall and insist that you must meet the mayor at once.`,`The secretaries reluctantly let you in and you are face to face with the mayor.`,`Mayor: “What brings you here?”`,`The mayor sounds displeased, but you proceed to tell him what happened in the forest.`,`Mayor: “That is worrisome, but unfortunately there is nothing I can do. The knights are too busy, and I have no intention of mobilizing them for a mere horse.”`,`The mayor then shoos you out of his office as he continues to work. You leave, dejected.`],[{name: "Return to the Town", effect: ()=> moveTo(returnFirstTown),}])
 const talkedToKnights = new storyPart(`4c`,[``,`You head to the local knights' headquarters and you are happy to be met with the knight commander himself.`,`You inform the Commander of what happened.`,`Commander: “Hmmm”`,`Commander: “I will take my men to investigate the forest, but if what you said is true then it may be impossible to find your horse again. I suggest trying to move on.”`,`The commander responded with a cold, yet truthful voice as he suggested that Guy do the impossible.`],[{name: "Return to the Town", effect: ()=> moveTo(returnFirstTown),}])
-const returnFirstTown = new storyPart(`4d`,[``,`After your fruitless attempt to ask for help you begin to head out of town defeated and, quite frankly, ready to cry.`,`Your horse had been with you more than your own parents and had been the only one you considered a friend.`,`Besides the horse, there was someone else you had remained by your side and told you tales of your parents' deeds.`,`But he was more of a grandfather to you than a friend.`,`You continue down the main street while holding back tears.`,'You: WAAAAAAAA *sobbing noises* WAAAAAAA', 'For a brief moment, you became a big fat baby', `???: “Hel-”`,`???: “Gu-”`,`???: “GUY!”`,`You are startled by the roaring voice coming from behind and you spot a familiar face.`,`An old man with a large and fit physique approaches you. You immediately recognize him.`,`The only person you consider family: KAMERON!`,`Kameron: “What’s wrong, I haven’t seen you look so depressed since you lost your parents.” After hearing the concern in his deep voice you finally break and tell him everything that happened to you in the past few hours.`,`Kameron: “I see … I think it's time to show you what you are capable of”`,`You: “What do you mean?”`,`Kameron: “You see … there is more to you than meets the eye”`,`You: “What do you mean?”`,`Kameron: “You wield a special power that, along with myself, only a few in history have ever had”`,`You: “!?”`,`Kameron: “You're a telepath Guy!”`,`You: “What do you mean? I’m a telepath… and YOU are one too!?”`,`Kameron: “HAR HAR HAR!” “YES! Haven’t you ever felt like you knew a little too much about what that horse of yours was thinking”`,`You: “I- I guess? I mean I always thought that was just because we had been together since I was born.”`,`Kameron: “Gods no! Most horses don’t even live to be as nearly as old and healthy as that Korai of yours, and you think you can get that close to one within such a short amount of time?”`,`You: “Well …. No.” “But it’s not like I understood his every thought, it was always just a small feeling!” “Kinda like how you can feel another’s pain!”`,`Kameron: “Exactly, that is what our telepathy allows us to do.” “We can’t read another’s mind, but we can read emotions.” “It allows us to predict an enemy’s attack, or connect on a deeper level with friends and family.”`,`Kameron: “Your bond with Korai certainly played a role in it, but your powers are what allowed you to truly understand that horse.”`,`You: “Alright… but how will this help me get Korai back?”`,`Kameron: “Simple. A better ability to read emotions allows you to track another down easier.”`,`You: “Really?”`,`Kameron: “Yes, but there is much to prepare and training will take a while, so let’s begin your training after we thoroughly search the forest for Korai.”`,`You and Kameron return to the forest and, despite your desperation and best efforts, all traces of Korai mysteriously disappear after a certain point.`,`Now determined, you return to Kameron’s home and begin your training as a telepath.`],[{name: "Two Months Later...", effect: ()=> moveTo(twoMonthsLater),}]);
+const returnFirstTown = new storyPart(`4d`,[``,`After your fruitless attempt to ask for help you begin to head out of town defeated and, quite frankly, ready to cry.`,`Your horse had been with you more than your own parents and had been the only one you considered a friend.`,`Besides the horse, there was someone else you had remained by your side and told you tales of your parents' deeds.`,`But he was more of a grandfather to you than a friend.`,`You continue down the main street while holding back tears.`,'You: WAAAAAAAA *sobbing noises* WAAAAAAA', 'For a brief moment, you became a big fat baby', `???: “Hel-”`,`???: “Gu-”`,`???: “GUY!”`,`You are startled by the roaring voice coming from behind and you spot a familiar face.`,`An old man with a large and fit physique approaches you. You immediately recognize him.`,`The only person you consider family: KAMERON!`,`Kameron: “What’s wrong, I haven’t seen you look so depressed since you lost your parents.” After hearing the concern in his deep voice you finally break and tell him everything that happened to you in the past few hours.`,`Kameron: “I see … I think it's time to show you what you are capable of”`,`You: “What do you mean?”`,`Kameron: “You see … there is more to you than meets the eye”`,`You: “What do you mean?”`,`Kameron: “You wield a special power that, along with myself, only a few in history have ever had”`,`You: “!?”`,`Kameron: “You're a telepath Guy!”`,`You: “What do you mean? I’m a telepath… and YOU are one too!?”`,`Kameron: “HAR HAR HAR!” “YES! Haven’t you ever felt like you knew a little too much about what that horse of yours was thinking”`,`You: “I- I guess? I mean I always thought that was just because we had been together since I was born.”`,`Kameron: “Gods no! Most horses don’t even live to be as nearly as old and healthy as that Korai of yours, and you think you can get that close to one within such a short amount of time?”`,`You: “Well …. No.” “But it’s not like I understood his every thought, it was always just a small feeling!” “Kinda like how you can feel another’s pain!”`,`Kameron: “Exactly, that is what our telepathy allows us to do.” “We can’t read another’s mind, but we can read emotions.” “It allows us to predict an enemy’s attack, or connect on a deeper level with friends and family.”`,`Kameron: “Your bond with Korai certainly played a role in it, but your powers are what allowed you to truly understand that horse.”`,`You: “Alright… but how will this help me get Korai back?”`,`Kameron: “Simple. A better ability to read emotions allows you to track another down easier.”`,`You: “Really?”`,`Kameron: “Yes, but there is much to prepare and training will take a while, so let’s begin your training after we thoroughly search the forest for Korai.”`,`You and Kameron return to the forest and, despite your desperation and best efforts, all traces of Korai mysteriously disappear after a certain point.`,`Now determined, you return to Kameron’s home and begin your training as a telepath.`],[{name: "Two Months Later...", effect: ()=> {player.telepathy = 3; moveTo(twoMonthsLater);}}]);
 const twoMonthsLater = new storyPart(`5a`,[``,`Every week since your training began you would routinely search the forest for Korai after your cruel training sessions, but you never found any traces of Korai.`,`You did, however, find traces of what attacked you.`,`Now, prepared and trained by Kameron, you set out to the next town over after learning that their tracks lead in the same direction.`,`Before heading out Kameron tells you that you should visit the shop and stock up on potions.`],[{name: "Go Shopping", effect: ()=> moveTo(firstShop),},{name: "Move on without shopping", effect: ()=> moveTo(secondTown),}]);
 const firstShop = new storyPart(`6a`,[``,`You decide to visit the store to stock up.`,`Shopkeeper: “Welcome to my shop! What are you looking for?”`],[{name: "Buy Health Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.healthP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: I'm sorry, it appears you don't have enough money.`);}}},{name: "Buy Shield Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.shieldP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: I'm sorry, it appears you don't have enough money.`);}}},{name: "Leave Shop", effect: () => moveTo(secondTown)}])
 const secondTown = new storyPart(`7a`,[``,`After finishing your preparations you are ready to continue onward.`,`You leave town with Kameron a little anxious, but determined.`,`A week passes and you finally arrive in the neighboring town to the east.`,`After a quick lap of the town square you and Kameron are split on what to do next.`,`Kameron suggests going to the Knights' Guild because he believes that they would be the most knowledgeable about the monsters and criminals that have entered the region.`,`However, it might be better to ask the locals about Korai and the monsters first before heading straight to the Knights' guild.`],[{name: "Go to the Knights' Guild", effect: ()=> moveTo(meetChad),},{name: "Ask the Locals", effect: ()=> moveTo(meetOwainPartOne),},{name: "Visit the Library", effect: ()=> moveTo(library),}])
@@ -81,7 +82,7 @@ const libraryTome = new storyPart(`7bb`,[``,`You pick a random book off of the s
 const returnFromLibrary = new storyPart(`7c`,[``,`After returning from the library, you still have a choice on who to ask for help.`,`Kameron still suggests going to the Knight's guild.`],[{name: "Go to the Knight's Guild", effect: ()=> moveTo(meetChad),},{name: "Ask the Locals", effect: ()=> moveTo(meetOwainPartOne),}])
 const meetOwainPartOne = new storyPart(`7c`,[``,`You decide to ask around the town square with Kameron before going straight to the Knights' Guild.`,`You and Kameron split up and each do a full lap of the square before meeting back up.`,`You: “The knights are leaving soon for the wastelands, the local bakery has a new pastry, and the only 'monster' seen by any of the civilians lately was a pig that enjoyed itself a bit too much in the cellar of the pub down the street.”`,`You: “So, nothing of value.”`,`Kameron: “I, on the other hand, did find something of value.”`,`You: “Really? Among these people?”`,`Kameron: “It's all about where and how you ask.”`,`You: “So? What did you find?”`,`Kameron: “There is a detective on the outskirts of town. He’s p'retty eccentric, but he is a genius and is currently going crazy trying to get new leads.”`,`You: “If he is so busy, will he really be able to help us?”`,`Kameron: “Of course, because he is currently investigating rampaging monsters and a group of cloaked men.”`,`You and Kameron head over to the detective’s agency, which is, in reality, an old house that looks as if it was built no less than 200 years ago.`],[{name: `Knock on the door`, effect: () => moveTo(meetOwainPartTwo)}]);
 const meetOwainPartTwo = new storyPart(`7ca`,[``,`You knock on the door and 5 minutes pass without any sign of life from within the building.`,`Kameron goes to knock again but the door flies open, almost ripping off its hinges.`,`???: “Second floor, room at the end of the hall, don’t enter the room and state your business before without opening the door.”`,`You look around for the source of the voice in confusion, but you find nothing.`,`The voice seems to come from everywhere within the building, but has no clear source.`,`Kameron: “Magic! Hehehe it seems we are in good hands Guy.”`,`Magic, like telepathy, was one of the many powers that could be found in this world, and it normally signified that one had immense knowledge.`,`You and Kameron head up to the second floor and arrive at the door at the end of the hall.`,`You: “We have a request”`,`???: “Speak.”`,`You explain what happened two months ago and state how you may be able to help each other.`,`???: “Hmmm…  alright, come on in”`,`The doors swing open and you see the detective sitting in front of you at a desk filled with paperwork.`,`Owain: “I am Owain. As you seem to already know I am in desperate need of a lead for my latest case. I cannot disclose who commissioned the case, but I am willing to share information with you on one condition.”`,`Kameron: “What is it?”`,`Owain: “Around the town square you will find 10 golden eggs seemingly hiding in plain sight. A normal person without magic cannot see them, and I need you to gather them for me.”`,`Owain: “Once you have all of the eggs return to me and we can talk.”`,`You and Kameron are suddenly thrust out of the office and find yourselves in front of the building. You wonder if you will actually learn anything of value from this man by just finding a couple of eggs.`],[{name: `Collect the eggs`, effect: () => egg()},{name: `Refuse to retreive the eggs`, effect: () => egg()}]);
-const refusal = new storyPart(`E2`,[``,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You arrive in the town square and begin to head over to the knights’ guild, but you find out that they have already left town.`,`With no other option you gather the eggs, but by the time you return to Owain he too is gone.`,`Without any leads and no way to find your beloved horse you and Kameron are lost with nowhere to go.`,`Many years pass and you simply wither away in town. You have lost to your own powerlessness.`],[{name: `Restart Game`, effect: () => {player.inventory.egg = 10; moveTo(beginning)}},{name: `Go back to before you refused`, effect: () => moveTo(meetOwainPartTwo)}]);
+const refusal = new storyPart(`E2`,[``,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You arrive in the town square and begin to head over to the knights’ guild, but you find out that they have already left town.`,`With no other option you gather the eggs, but by the time you return to Owain he too is gone.`,`Without any leads and no way to find your beloved horse you and Kameron are lost with nowhere to go.`,`Many years pass and you simply wither away in town. You have lost to your own powerlessness.`],[{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Go back to before you refused`, effect: () => moveTo(meetOwainPartTwo)}]);
 const afterEggs = new storyPart(`7cb`,[``,`You return to Owain with all 10 eggs and begin to share information with him`,`Owain particularly took note of your description of what attacked you back in the forest and the direction they went.`,`Owain: “You also said that the knights are headed to the wastelands?”`,`Kameron: “Yes.”`,`Owain: “Then it seems we have our destination.” “The knights have also been investigating a similar problem to me so if they are going to the wastelands then we must follow.”`,`You, Kameron, and Owain prepare to depart.`,`You: “Owain, what did you need the golden eggs for? When we gave them to you you just put them in that bag you have now.”`,`Kameron: “Are you short on money? Is that why you needed them?”`,`Kameron: “Gods no, I wanted them because they make the greatest omelet you will ever taste.”`,`With pure shock on both your's and Kameron's faces, your group departs on the journey to the Wastelands.`],[{name: `Journey to the Wastelands`, effect: () => moveTo()}]);
 const meetChad = new storyPart(`7d`,[``,`You decide to head to the Knights’ Guild.`,`When you arrive at the guild you ask around about who you can talk to about a request.`,`Knight: “A request you say? Hmmm….. Well I could take you to our commander, but we are currently preparing for an expedition so don’t expect much.”`,`As the Knight guides you through a long hallway you are filled with worry that you will be left without help just like in the last town.`,`The pair of large wooden double doors leading into an office swing open and the knight that guide you begins the introduction.`,`Knight: “I present you Sir Chad von Chad, commander of the knights of the square table!”\n “Sir, these two men have a request for you!”`,`Chad von Chad: “Let’s hear it, but make it quick we depart within the hour.”`,`You quickly explain what happened two months ago and ask Chad von Chad if he would be willing to help you in any way.`,`Chad von Chad: “That is troubling. You said you were attacked by something in the forest unprovoked?”`,`You: “Yes.”`,`Chad von Chad: “Then we may be able to help each other.” “You see we are currently heading to the wastelands following the tracks of a group of men cloaked in black who seem to be trying to control monsters.” “The monsters they control often appear to go crazy and rampage without care for their own life.”`,`Chad von Chad: “It appears that we are chasing after the same thing. I would be more than willing to help you, but you must also help us achieve our goal.”`,`Kameron (aside to you): “He speaks the truth, he may be able to help us, but nothing in this world is free so we may end up biting off more than we can chew.”`,`You take Kameron’s words to heart, but right now you see no other option but to take the risk.`,`You: “Alright. We will help you, but make sure you don’t forget to help us either.”`,`Chad flashes you a wide smile. Chad von Chad: “GREAT! Prepare yourselves, we depart soon!”`],[{name: `Journey to the Wastelands`, effect: () => moveTo()}]);
 
@@ -118,9 +119,10 @@ function Fight(storyFight){
                     textType(document.getElementById("textDisplay"), `You read ${storyFight.monster.name}'s mind. ${storyFight.monster.waitPhrase}`);
                 }
                 player.telepathy -= 1;
+                update();
             } else {
                 document.getElementById("textDisplay").textContent = ``;
-                textType(document.getElementById("textDisplay"), `You try to read the enemy's mind, but you have done this too many times. You are too tired to get a good reading.`);
+                textType(document.getElementById("textDisplay"), `You try to read the enemy's mind, but you are too tired to get a good reading.`);
             }
 
         });
@@ -128,6 +130,7 @@ function Fight(storyFight){
     document.getElementById(`attack`).addEventListener("click", () => {
         if(enemyChoice == 0){
             player.health -= 1;
+            update();
             storyFight.monster.health -= player.attack;
             if(player.health <= 0){
                 fightLose(storyFight)
@@ -142,6 +145,7 @@ function Fight(storyFight){
         }
         if(enemyChoice == 1){
             player.health -= 0.5;
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -155,6 +159,7 @@ function Fight(storyFight){
         }
         if(enemyChoice == 2){
             storyFight.monster.health -= player.attack;
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -172,6 +177,7 @@ function Fight(storyFight){
     document.getElementById(`defend`).addEventListener("click", () => {
         if(enemyChoice == 0){
             storyFight.monster.health -= (player.attack/2);
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -185,6 +191,7 @@ function Fight(storyFight){
 
         }
         if(enemyChoice == 1){
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -198,6 +205,7 @@ function Fight(storyFight){
         }
         if(enemyChoice == 2){
             player.health -= 1;
+            update();
             if(player.health <= 0){
                 fightLose(storyFight);
                 
@@ -214,6 +222,7 @@ function Fight(storyFight){
     document.getElementById(`wait`).addEventListener("click", () => {
         if(enemyChoice == 0){
             player.health -= 1;
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -227,6 +236,7 @@ function Fight(storyFight){
         }
         if(enemyChoice == 1){
             storyFight.monster.health -= player.attack;
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -239,6 +249,7 @@ function Fight(storyFight){
             }
         }
         if(enemyChoice == 2){
+            update();
             if(player.health <= 0){
                 fightLose(storyFight)
                 
@@ -281,7 +292,6 @@ function fightLose(storyFight){
     document.getElementById("textDisplay").textContent = ``;
     if(storyFight.monster.ending === 1){
         document.getElementById("textDisplay").textContent = ``;
-        player.health = 2;
         moveTo(secondRight);
     } else if (storyFight.monster.ending === 2){
         document.getElementById("textDisplay").textContent = ``;
@@ -303,10 +313,10 @@ function fightLose(storyFight){
 let currentPart = {};
 const beginning = new storyPart(`0`,[`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
 currentPart = beginning;
-setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 10) * (textSpeed + 1)));
+setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
 
 const body = document.getElementById("fullBody");
-setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 10) * textSpeed))
+setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * textSpeed))
 const arrow = document.getElementById("textBoxArrow");
 
 textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
@@ -316,7 +326,7 @@ function advanceDialogue(){
     if (currentPart.dialogue.length - 1 > currentDialogueNumber){
         currentDialogueNumber += 1;
         textType(document.getElementById("textDisplay"), currentPart.dialogue[currentDialogueNumber]);
-        setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 10) * (textSpeed + 1)));
+        setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
         setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 4) * textSpeed))
     } else {
         currentDialogueNumber = 0;
@@ -388,8 +398,33 @@ function egg(){
 
 function moveTo(nextPart){
     console.log(storyPathRecord);
+    update();
     currentPart = nextPart;
     document.getElementById("buttonDisplay").innerHTML = "";
     console.log(currentPart)
     advanceDialogue();
+}
+
+function update(){
+    document.getElementById(`health`).innerText = `Health: ${player.health}`;
+    document.getElementById(`money`).innerText = `Money: £${player.money}`;
+    if(player.telepathy >= 3){
+        document.getElementById(`telepathyContain`).innerHTML = `<p id="telepathy"></p>`
+        document.getElementById(`telepathy`).innerText = `Energy: ${player.telepathy}`;
+    }
+}
+
+function reset(){
+    player.attack = 1;
+    player.companion = 0;
+    player.health = 3;
+    player.losses = 0;
+    player.money = 10;
+    player.telepathy = 0;
+    player.inventory.egg = 0;
+    player.inventory.fish = 0;
+    player.inventory.healthP = 0;
+    player.inventory.shieldP = 0;
+    update();
+    moveTo(beginning);
 }
