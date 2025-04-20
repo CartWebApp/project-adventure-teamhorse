@@ -17,6 +17,10 @@
     z-index: -2;
 }
 
+#fullBody{
+    z-index: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;    
@@ -98,7 +102,6 @@ body {
 }
 
 #playerStats {
-    position: absolute;
     margin-left: 5.5vw;
     margin-top: 1vh;
     color: white;
@@ -110,6 +113,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding-bottom: 1em;
+    z-index: 5;
 }
 
 #playerStats button {
@@ -125,6 +129,38 @@ body {
 #playerStats button:hover {
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.8);
+}
+
+#fullInventory {
+    display: flex;
+    color: white;
+    background-color: black;
+    border: white solid 1px;
+    border-left-color:black;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    padding: 0rem 1rem;
+    z-index: 5;
+    margin-top: 1vh;
+    opacity: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#fullPlayerInfo {
+    display: flex;
+    position: absolute;
+}
+
+.inventoryItem {
+    display: flex;
+    height: 45%;
+}
+
+hr {
+    width: 100%;
+    height: 0px;
+    margin: 0;
 }
 
 @keyframes arrowBob {
