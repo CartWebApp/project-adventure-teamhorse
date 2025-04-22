@@ -155,6 +155,15 @@ body {
 .inventoryItem {
     display: flex;
     height: 45%;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    background-color: black;
+    transition: background-color .4s;
+    border-radius: 1em;
+}
+
+.inventoryItem:hover {
+    background-color: rgba(128, 128, 128, 0.8);
 }
 
 hr {
