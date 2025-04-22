@@ -1,6 +1,6 @@
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
-let textSpeed = 10;
+let textSpeed = 0;
 const player = {
     health: 3,
     // Companion # meaning
@@ -17,7 +17,7 @@ const player = {
     },
     losses: 0,
     attack: 1,
-    telepathy: 0,
+    telepathy: -1,
 };
 
 class monster {
@@ -37,6 +37,7 @@ class monster {
 };
 
 const firstMonster = new monster(`the monster`,5,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
+const secondMonster = new monster(`the cloaked figure`, 4, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
 
 class storyPart {
     constructor(order,dialogue = [], options = []){
@@ -54,6 +55,7 @@ class fight {
     }
 }
 const firstFight = new fight("",firstMonster,player.companion);
+const secondFight = new fight("",secondMonster,player.companion);
 
 // Example story part
 // In dialogue LEAVE A BLANK STRING AS THE FIRST ELEMENT IN THE ARRAY.
@@ -84,13 +86,11 @@ const meetOwainPartOne = new storyPart(`7c`,[``,`You decide to ask around the to
 const meetOwainPartTwo = new storyPart(`7ca`,[``,`You knock on the door and 5 minutes pass without any sign of life from within the building.`,`Kameron goes to knock again but the door flies open, almost ripping off its hinges.`,`???: “Second floor, room at the end of the hall, don’t enter the room and state your business before without opening the door.”`,`You look around for the source of the voice in confusion, but you find nothing.`,`The voice seems to come from everywhere within the building, but has no clear source.`,`Kameron: “Magic! Hehehe it seems we are in good hands Guy.”`,`Magic, like telepathy, was one of the many powers that could be found in this world, and it normally signified that one had immense knowledge.`,`You and Kameron head up to the second floor and arrive at the door at the end of the hall.`,`You: “We have a request”`,`???: “Speak.”`,`You explain what happened two months ago and state how you may be able to help each other.`,`???: “Hmmm…  alright, come on in”`,`The doors swing open and you see the detective sitting in front of you at a desk filled with paperwork.`,`Owain: “I am Owain. As you seem to already know I am in desperate need of a lead for my latest case. I cannot disclose who commissioned the case, but I am willing to share information with you on one condition.”`,`Kameron: “What is it?”`,`Owain: “Around the town square you will find 10 golden eggs seemingly hiding in plain sight. A normal person without magic cannot see them, and I need you to gather them for me.”`,`Owain: “Once you have all of the eggs return to me and we can talk.”`,`You and Kameron are suddenly thrust out of the office and find yourselves in front of the building. You wonder if you will actually learn anything of value from this man by just finding a couple of eggs.`],[{name: `Collect the eggs`, effect: () => egg()},{name: `Refuse to retreive the eggs`, effect: () => egg()}]);
 const refusal = new storyPart(`E2`,[``,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You realize it is ridiculous to expect anything of value out of Owain, even if he is a magician, and head back to town.`,`You arrive in the town square and begin to head over to the knights’ guild, but you find out that they have already left town.`,`With no other option you gather the eggs, but by the time you return to Owain he too is gone.`,`Without any leads and no way to find your beloved horse you and Kameron are lost with nowhere to go.`,`Many years pass and you simply wither away in town. You have lost to your own powerlessness.`],[{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Go back to before you refused`, effect: () => moveTo(meetOwainPartTwo)}]);
 const afterEggs = new storyPart(`7cb`,[``,`You return to Owain with all 10 eggs and begin to share information with him`,`Owain particularly took note of your description of what attacked you back in the forest and the direction they went.`,`Owain: “You also said that the knights are headed to the Wastelands?”`,`Kameron: “Yes.”`,`Owain: “Then it seems we have our destination.” “The knights have also been investigating a similar problem to me so if they are going to the Wastelands then we must follow.”`,`You, Kameron, and Owain prepare to depart.`,`You: “Owain, what did you need the golden eggs for? When we gave them to you you just put them in that bag you have now.”`,`Kameron: “Are you short on money? Is that why you needed them?”`,`Kameron: “Gods no, I wanted them because they make the greatest omelet you will ever taste.”`,`With pure shock on both your's and Kameron's faces, your group departs on the journey to the Wastelands.`],[{name: `Journey to the Wastelands`, effect: () => moveTo()}]);
-const meetChad = new storyPart(`7d`,[``,`You decide to head to the Knights’ Guild.`,`When you arrive at the guild you ask around about who you can talk to about a request.`,`Knight: “A request you say? Hmmm….. Well I could take you to our commander, but we are currently preparing for an expedition so don’t expect much.”`,`As the Knight guides you through a long hallway you are filled with worry that you will be left without help just like in the last town.`,`The pair of large wooden double doors leading into an office swing open and the knight that guide you begins the introduction.`,`Knight: “I present you Sir Chad von Chad, commander of the knights of the square table!”\n “Sir, these two men have a request for you!”`,`Chad von Chad: “Let’s hear it, but make it quick we depart within the hour.”`,`You quickly explain what happened two months ago and ask Chad von Chad if he would be willing to help you in any way.`,`Chad von Chad: “That is troubling. You said you were attacked by something in the forest unprovoked?”`,`You: “Yes.”`,`Chad von Chad: “Then we may be able to help each other.” “You see we are currently heading to the Wastelands following the tracks of a group of men cloaked in black who seem to be trying to control monsters.” “The monsters they control often appear to go crazy and rampage without care for their own life.”`,`Chad von Chad: “It appears that we are chasing after the same thing. I would be more than willing to help you, but you must also help us achieve our goal.”`,`Kameron (aside to you): “He speaks the truth, he may be able to help us, but nothing in this world is free so we may end up biting off more than we can chew.”`,`You take Kameron’s words to heart, but right now you see no other option but to take the risk.`,`You: “Alright. We will help you, but make sure you don’t forget to help us either.”`,`Chad flashes you a wide smile. Chad von Chad: “GREAT! Prepare yourselves, we depart soon!”`],[{name: `Journey to the Wastelands`, effect: () => {player.companion = 1;moveTo();}}]);
-// Story part below needs to be linked up to a Chad von Chad fight
-const wastelandDepartChad = new storyPart(`8a`, [``,`It’s been a week since you departed with the knights to the Wastelands.`, `Faithful to its namesake, the Wastelands show no form of life besides the occasional monsters that cannibalize each other and feed off of unfortunate travelers.`, `You and the knights had a smooth journey so far, but everyone knew remained on guard.`, `ROOOOAAAR!`, `Stalking you from a distance a group of monsters reveal themselves.`, `Your vigilance paid off as everyone in the group remained calm.`, `Chad von Chad: “PREPARE FOR BATTLE! THERE APPEARS TO BE A GROUP OF TEN APPROACHING, THEY ARE WEAK BUT DON'T LET YOUR GUARD DOWN!”`], [{name: "FIGHT!", effect: ()=> Fight(fight_Chad)}])
-
-// const wastelandFightChadWin = new storyPart(`8aa`, [``, `Chad von Chad: “Great work! It seems we can pick up the pace if you are this strong!”`, `You continue onward with newfound confidence`], [{name: "Continue deeper into the wastelands", effect: ()=> moveTo(outpostChad),}])
-// const wastleandFightChadLosse = new storyPart(`*ab`, [``, `Chad von Chad: “I expected more of you.”`, `Kameron (whispering): “Hmm.. should we have trained for longer?”`, `You are disappointed by your own weakness and follow the knights from behind as they move onwards.`, [{name: "Continue deeper into the wastelands", effect: ()=> moveTo(outpostChad),}]])
-const outpostChad = new storyPart(`9a`, [``, `You and the knights continue forward and eventually arrive at an outpost that marks the entrance into the depths of the Wastelands.`])
+const meetChad = new storyPart(`7d`,[``,`You decide to head to the Knights’ Guild.`,`When you arrive at the guild you ask around about who you can talk to about a request.`,`Knight: “A request you say? Hmmm….. Well I could take you to our commander, but we are currently preparing for an expedition so don’t expect much.”`,`As the Knight guides you through a long hallway you are filled with worry that you will be left without help just like in the last town.`,`The pair of large wooden double doors leading into an office swing open and the knight that guide you begins the introduction.`,`Knight: “I present you Sir Chad von Chad, commander of the knights of the square table!”\n “Sir, these two men have a request for you!”`,`Chad von Chad: “Let’s hear it, but make it quick we depart within the hour.”`,`You quickly explain what happened two months ago and ask Chad von Chad if he would be willing to help you in any way.`,`Chad von Chad: “That is troubling. You said you were attacked by something in the forest unprovoked?”`,`You: “Yes.”`,`Chad von Chad: “Then we may be able to help each other.” “You see we are currently heading to the Wastelands following the tracks of a group of men cloaked in black who seem to be trying to control monsters.” “The monsters they control often appear to go crazy and rampage without care for their own life.”`,`Chad von Chad: “It appears that we are chasing after the same thing. I would be more than willing to help you, but you must also help us achieve our goal.”`,`Kameron (aside to you): “He speaks the truth, he may be able to help us, but nothing in this world is free so we may end up biting off more than we can chew.”`,`You take Kameron’s words to heart, but right now you see no other option but to take the risk.`,`You: “Alright. We will help you, but make sure you don’t forget to help us either.”`,`Chad flashes you a wide smile. Chad von Chad: “GREAT! Prepare yourselves, we depart soon!”`],[{name: `Journey to the Wastelands`, effect: () => {player.companion = 1;moveTo(wastelandDepartChad);}}]);
+const wastelandDepartChad = new storyPart(`8a`, [``,`It’s been a week since you departed with the knights to the Wastelands.`, `Faithful to its namesake, the Wastelands show no form of life besides the occasional monsters that cannibalize each other and feed off of unfortunate travelers.`, `You and the knights had a smooth journey so far, but everyone knew remained on guard.`, `ROOOOAAAR!`, `Stalking you from a distance a group of monsters reveal themselves.`, `Your vigilance paid off as everyone in the group remained calm.`, `Chad von Chad: “PREPARE FOR BATTLE! THERE APPEARS TO BE A GROUP OF TEN APPROACHING, THEY ARE WEAK BUT DON'T LET YOUR GUARD DOWN!”`,`A cloaked being appears to be leading the group and approaches you for combat.`], [{name: "FIGHT!", effect: ()=> Fight(secondFight)}])
+const wastelandFightChadWin = new storyPart(`8aa`, [``,`Chad von Chad: “Great work! It seems we can pick up the pace if you are this strong!”`, `You continue onward with newfound confidence`], [{name: "Continue deeper into the wastelands", effect: ()=> moveTo(outpostChad),}])
+const wastelandFightChadLose = new storyPart(`8ab`, [``,`Chad von Chad: “I expected more of you.”`, `Kameron (whispering): “Hmm.. should we have trained for longer?”`, `You are disappointed by your own weakness and follow the knights from behind as they move onwards.`], [{name: "Continue deeper into the wastelands", effect: ()=> moveTo(outpostChad),}])
+const outpostChad = new storyPart(`9a`, [``,`You and the knights continue forward and eventually arrive at an outpost that marks the entrance into the depths of the Wastelands.`])
 
 // All story parts go above this line
 
@@ -290,8 +290,12 @@ function fightWin(storyFight){
         if (player.losses >= 2){
             moveTo();
         }
+        if (currentPart.order == `8a`){
+            moveTo(wastelandFightChadWin)
+        }
         
     }
+    update();
 }
 
 function fightLose(storyFight){
@@ -312,8 +316,12 @@ function fightLose(storyFight){
         if (player.losses >= 2){
             moveTo();
         }
+        if (currentPart.order == `8a`){
+            moveTo(wastelandFightChadLose)
+        }
 
     }
+
 }
 
 let inventoryDisplay = document.getElementById(`fullInventory`);
@@ -425,9 +433,9 @@ function moveTo(nextPart){
 function update(){
     document.getElementById(`health`).innerText = `Health: ${player.health}`;
     document.getElementById(`money`).innerText = `Money: £${player.money}`;
-    if(player.telepathy >= 3){
-        document.getElementById(`telepathyContain`).innerHTML = `<p id="telepathy"></p>`
-        document.getElementById(`telepathy`).innerText = `Energy: ${player.telepathy}`;
+    if(player.telepathy >= 0){
+        document.getElementById(`telepathyContain`).innerHTML = `<p id="telepathyNumber"></p>`
+        document.getElementById(`telepathyNumber`).innerText = `Energy: ${player.telepathy}`;
     };
     let inventoryHtml = ``;
     if(player.inventory.healthP > 0){
