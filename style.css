@@ -7,7 +7,7 @@
     position: absolute;
     width: 90vw;
     align-self: center;
-    background-image: url(/images/path\ tree\ HERO.jpg); 
+    background-image: url(/images/Titleimage.jpeg); 
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
@@ -27,6 +27,14 @@ body {
     margin: 0;
     min-height: 100vh;
     background-color: black;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
 }
 
 #buttonDisplay {
@@ -89,6 +97,21 @@ body {
     height: 100vh;
     align-self: center;
     z-index: -1;
+}
+
+.title {
+    position: absolute;
+    color: white;
+    width: 30%;
+    left: 35%;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    
+}
+
+.title h2 {
+    margin-top: 0;
 }
 
 .egg {
