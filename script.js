@@ -74,7 +74,7 @@ const firstFightWin = new storyPart(`E1`,[``,`Your attack deals the final blow t
 const firstTown = new storyPart(`4a`,[``,`You arrive at town and are met with a decision.`,`Do you report what happened to the mayor or to the local knights?`,`You have never met the mayor before and worry that he will ignore you, but the knights are a small group and constantly busy keeping the town safe.`,`There is no guarantee either will be able to help you.`,`Who should you choose?`],[{name: "Talk to the Mayor", effect: ()=> moveTo(talkedToMayor),},{name: `Speak to the town knights`,effect: ()=> moveTo(talkedToKnights)}])
 const talkedToMayor = new storyPart(`4b`,[``,`You quickly head towards Town Hall and insist that you must meet the mayor at once.`,`The secretaries reluctantly let you in and you are face to face with the mayor.`,`Mayor: “What brings you here?”`,`The mayor sounds displeased, but you proceed to tell him what happened in the forest.`,`Mayor: “That is worrisome, but unfortunately there is nothing I can do. The knights are too busy, and I have no intention of mobilizing them for a mere horse.”`,`The mayor then shoos you out of his office as he continues to work. You leave, dejected.`],[{name: "Return to the Town", effect: ()=> moveTo(returnFirstTown),}])
 const talkedToKnights = new storyPart(`4c`,[``,`You head to the local knights' headquarters and you are happy to be met with the knight commander himself.`,`You inform the Commander of what happened.`,`Commander: “Hmmm”`,`Commander: “I will take my men to investigate the forest, but if what you said is true then it may be impossible to find your horse again. I suggest trying to move on.”`,`The commander responded with a cold, yet truthful voice as he suggested that Guy do the impossible.`],[{name: "Return to the Town", effect: ()=> moveTo(returnFirstTown),}])
-const returnFirstTown = new storyPart(`4d`,[``,`After your fruitless attempt to ask for help you begin to head out of town defeated and, quite frankly, ready to cry.`,`Your horse had been with you more than your own parents and had been the only one you considered a friend.`,`Besides the horse, there was someone else you had remained by your side and told you tales of your parents' deeds.`,`But he was more of a grandfather to you than a friend.`,`You continue down the main street while holding back tears.`,'You: WAAAAAAAA *sobbing noises* WAAAAAAA', 'For a brief moment, you became a big fat baby', `???: “Hel-”`,`???: “Gu-”`,`???: “GUY!”`,`You are startled by the roaring voice coming from behind and you spot a familiar face.`,`An old man with a large and fit physique approaches you. You immediately recognize him.`,`The only person you consider family: KAMERON!`,`Kameron: “What’s wrong, I haven’t seen you look so depressed since you lost your parents.” After hearing the concern in his deep voice you finally break and tell him everything that happened to you in the past few hours.`,`Kameron: “I see … I think it's time to show you what you are capable of”`,`You: “What do you mean?”`,`Kameron: “You see … there is more to you than meets the eye”`,`You: “What do you mean?”`,`Kameron: “You wield a special power that, along with myself, only a few in history have ever had”`,`You: “!?”`,`Kameron: “You're a telepath Guy!”`,`You: “What do you mean? I’m a telepath… and YOU are one too!?”`,`Kameron: “HAR HAR HAR!” “YES! Haven’t you ever felt like you knew a little too much about what that horse of yours was thinking”`,`You: “I- I guess? I mean I always thought that was just because we had been together since I was born.”`,`Kameron: “Gods no! Most horses don’t even live to be as nearly as old and healthy as that Korai of yours, and you think you can get that close to one within such a short amount of time?”`,`You: “Well …. No.” “But it’s not like I understood his every thought, it was always just a small feeling!” “Kinda like how you can feel another’s pain!”`,`Kameron: “Exactly, that is what our telepathy allows us to do.” “We can’t read another’s mind, but we can read emotions.” “It allows us to predict an enemy’s attack, or connect on a deeper level with friends and family.”`,`Kameron: “Your bond with Korai certainly played a role in it, but your powers are what allowed you to truly understand that horse.”`,`You: “Alright… but how will this help me get Korai back?”`,`Kameron: “Simple. A better ability to read emotions allows you to track another down easier.”`,`You: “Really?”`,`Kameron: “Yes, but there is much to prepare and training will take a while, so let’s begin your training after we thoroughly search the forest for Korai.”`,`You and Kameron return to the forest and, despite your desperation and best efforts, all traces of Korai mysteriously disappear after a certain point.`,`Now determined, you return to Kameron’s home and begin your training as a telepath.`],[{name: "Two Months Later...", effect: ()=> {player.telepathy = 4; moveTo(twoMonthsLater);}}]);
+const returnFirstTown = new storyPart(`4d`,[``,`After your fruitless attempt to ask for help you begin to head out of town defeated and, quite frankly, ready to cry.`,`Your horse had been with you more than your own parents and had been the only one you considered a friend.`,`Besides the horse, there was someone else you had remained by your side and told you tales of your parents' deeds.`,`But he was more of a grandfather to you than a friend.`,`You continue down the main street while holding back tears.`,'You: WAAAAAAAA *sobbing noises* WAAAAAAA', 'For a brief moment, you became a big fat baby.', `???: “Hel-”`,`???: “Gu-”`,`???: “GUY!”`,`You are startled by the roaring voice coming from behind and you spot a familiar face.`,`An old man with a large and fit physique approaches you. You immediately recognize him.`,`The only person you consider family: KAMERON!`,`Kameron: “What’s wrong, I haven’t seen you look so depressed since you lost your parents.” After hearing the concern in his deep voice you finally break and tell him everything that happened to you in the past few hours.`,`Kameron: “I see … I think it's time to show you what you are capable of”`,`You: “What do you mean?”`,`Kameron: “You see … there is more to you than meets the eye”`,`You: “What do you mean?”`,`Kameron: “You wield a special power that, along with myself, only a few in history have ever had”`,`You: “!?”`,`Kameron: “You're a telepath Guy!”`,`You: “What do you mean? I’m a telepath… and YOU are one too!?”`,`Kameron: “HAR HAR HAR!” “YES! Haven’t you ever felt like you knew a little too much about what that horse of yours was thinking”`,`You: “I- I guess? I mean I always thought that was just because we had been together since I was born.”`,`Kameron: “Gods no! Most horses don’t even live to be as nearly as old and healthy as that Korai of yours, and you think you can get that close to one within such a short amount of time?”`,`You: “Well …. No.” “But it’s not like I understood his every thought, it was always just a small feeling!” “Kinda like how you can feel another’s pain!”`,`Kameron: “Exactly, that is what our telepathy allows us to do.” “We can’t read another’s mind, but we can read emotions.” “It allows us to predict an enemy’s attack, or connect on a deeper level with friends and family.”`,`Kameron: “Your bond with Korai certainly played a role in it, but your powers are what allowed you to truly understand that horse.”`,`You: “Alright… but how will this help me get Korai back?”`,`Kameron: “Simple. A better ability to read emotions allows you to track another down easier.”`,`You: “Really?”`,`Kameron: “Yes, but there is much to prepare and training will take a while, so let’s begin your training after we thoroughly search the forest for Korai.”`,`You and Kameron return to the forest and, despite your desperation and best efforts, all traces of Korai mysteriously disappear after a certain point.`,`Now determined, you return to Kameron’s home and begin your training as a telepath.`],[{name: "Two Months Later...", effect: ()=> {player.telepathy = 4; moveTo(twoMonthsLater);}}]);
 const twoMonthsLater = new storyPart(`5a`,[``,`Every week since your training began you would routinely search the forest for Korai after your cruel training sessions, but you never found any traces of Korai.`,`You did, however, find traces of what attacked you.`,`Now, prepared and trained by Kameron, you set out to the next town over after learning that their tracks lead in the same direction.`,`Before heading out Kameron tells you that you should visit the shop and stock up on potions.`],[{name: "Go Shopping", effect: ()=> moveTo(firstShop),},{name: "Move on without shopping", effect: ()=> moveTo(secondTown),}]);
 const firstShop = new storyPart(`6a`,[``,`You decide to visit the store to stock up.`,`Shopkeeper: “Welcome to my shop! What are you looking for?”`],[{name: "Buy Health Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.healthP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Buy Energy Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.energyP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Leave Shop", effect: () => moveTo(secondTown)}])
 const secondTown = new storyPart(`7a`,[``,`After finishing your preparations you are ready to continue onward.`,`You leave town with Kameron a little anxious, but determined.`,`A week passes and you finally arrive in the neighboring town to the east.`,`After a quick lap of the town square you and Kameron are split on what to do next.`,`Kameron suggests going to the Knights' Guild because he believes that they would be the most knowledgeable about the monsters and criminals that have entered the region.`,`However, it might be better to ask the locals about Korai and the monsters first before heading straight to the Knights' guild.`],[{name: "Go to the Knights' Guild", effect: ()=> moveTo(meetChad),},{name: "Ask the Locals", effect: ()=> moveTo(meetOwainPartOne),},{name: "Visit the Library", effect: ()=> moveTo(library),}])
@@ -334,6 +334,7 @@ function fightWin(storyFight){
         moveTo();
     } else {
         document.getElementById("textDisplay").textContent = ``;
+        player.money += 4;
         if (player.losses >= 2){
             moveTo();
         }
@@ -396,8 +397,8 @@ document.getElementById(`startButton`).addEventListener(`click`, () =>{
     document.getElementById(`fullTextBox`).style.opacity = 1;
     document.getElementById(`title`).style.opacity = 0;
     moveTo(beginning);
-    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
-    setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)))
+    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)));
+    setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)))
 })
 
 textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
@@ -434,7 +435,7 @@ function textType(element, text, i = 0){
         return;
     }
 
-    setTimeout(() => textType(element, text, i + 1), textSpeed);
+    setTimeout(() => textType(element, text, i + 1), textSpeed - 1);
 }
 
 function fish(){
@@ -499,27 +500,54 @@ function update(){
         document.getElementById(`telepathyNumber`).innerText = `Energy: ${player.telepathy}`;
     };
     let inventoryHtml = ``;
-    if(player.inventory.healthP > 0){
+    if((player.inventory.healthP > 0) && (player.inventory.energyP > 0)){
         inventoryHtml += `<div class="inventoryItem" id="healthPotionButton" ><img src="/images/healthPotion.png"><p>Health Potion</p><p>Amount: ${player.inventory.healthP}</p></div>`;
-        inventoryDisplay.innerHTML = inventoryHtml;
-        document.getElementById(`healthPotionButton`).addEventListener(`click`,()=>{
-            if(player.health == 5){
-                return;
-            } else if(player.health == 4){
-                player.health += 1;
-                player.inventory.healthP -= 1;
-            } else {
-                player.health += 2;
-                player.inventory.healthP -= 1;
-            }
-            update();
-        });
-    }
-    if(player.inventory.energyP > 0){
         inventoryHtml += `<div class="inventoryItem" id="energyPotionButton" ><img src="/images/shieldPotion.png"><p>Energy Potion</p><p>Amount: ${player.inventory.energyP}</p></div>`;
         inventoryDisplay.innerHTML = inventoryHtml;
         document.getElementById(`energyPotionButton`).addEventListener(`click`,()=>{
-            if(player.telepathy == 4){
+            if((player.telepathy == 4) || (player.telepathy < 0)){
+                return;
+            } else if(player.telepathy == 3){
+                player.telepathy += 1;
+                player.inventory.energyP -= 1;
+            } else {
+                player.telepathy += 2;
+                player.inventory.energyP -= 1;
+            }
+            update();
+        });
+        document.getElementById(`healthPotionButton`).addEventListener(`click`,()=>{
+            if(player.health >= 5){
+                return;
+            } else {
+                player.health += 2;
+                player.inventory.healthP -= 1;
+                if(player.health > 5){
+                    player.health = 5;
+                }
+            }
+            update();
+        });
+    }else if(player.inventory.healthP > 0){
+        inventoryHtml += `<div class="inventoryItem" id="healthPotionButton" ><img src="/images/healthPotion.png"><p>Health Potion</p><p>Amount: ${player.inventory.healthP}</p></div>`;
+        inventoryDisplay.innerHTML = inventoryHtml;
+        document.getElementById(`healthPotionButton`).addEventListener(`click`,()=>{
+            if(player.health >= 5){
+                return;
+            } else {
+                player.health += 2;
+                player.inventory.healthP -= 1;
+                if(player.health > 5){
+                    player.health = 5;
+                }
+            }
+            update();
+        });
+    }else if(player.inventory.energyP > 0){
+        inventoryHtml += `<div class="inventoryItem" id="energyPotionButton" ><img src="/images/shieldPotion.png"><p>Energy Potion</p><p>Amount: ${player.inventory.energyP}</p></div>`;
+        inventoryDisplay.innerHTML = inventoryHtml;
+        document.getElementById(`energyPotionButton`).addEventListener(`click`,()=>{
+            if((player.telepathy == 4) || (player.telepathy < 0)){
                 return;
             } else if(player.telepathy == 3){
                 player.telepathy += 1;
@@ -560,7 +588,9 @@ function changeBackgroundTo(nextPart){
         background.style.backgroundImage = `url(/images/path.jpg)`;
     } else if(nextPart == firstTown){
         background.style.backgroundImage = `url(/images/firstTown.jpeg)`;
-    } else if(nextPart == talkedToKnights){
+    } else if(nextPart == talkedToMayor){
         background.style.backgroundImage = `url(/images/firstTownKnightCommander.jpeg)`
-    }
+    } else if(nextPart == talkedToKnights){
+        background.style.backgroundImage = `url(/images/firstTownKnightGuild.jpeg)`
+    } 
 }
