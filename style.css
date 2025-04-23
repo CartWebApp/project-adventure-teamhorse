@@ -49,11 +49,11 @@ h2 {
 }
 
 #textBoxArrowContainer {
-    position: fixed;
+    position: relative;
     display: flex;
     align-self: flex-end;
     padding-bottom: 1rem;
-    padding-left: 34%;
+    width: 1em
 }
 
 #textBoxArrow {
