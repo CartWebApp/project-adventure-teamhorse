@@ -161,7 +161,6 @@ h2 {
     padding: 0.5em;
     transition: background-color .4s;
     border-radius: 0.5rem;
-    z-index: 500;
 }
 
 #playerStats button:hover {
@@ -218,7 +217,7 @@ hr {
 }
 
 /* on mobile, for media queries, make the arrow position relative and have no left padding to avoid the arrow sliding on the page*/
-
+/* Also increase egg size */
 
 /* Can be changed. I don't love it but I didn't just want the default font anymore. */
 /* @font-face {
