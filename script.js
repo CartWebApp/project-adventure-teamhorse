@@ -521,7 +521,7 @@ function reset(){
     player.health = 5;
     player.losses = 0;
     player.money = 10;
-    player.telepathy = 0;
+    player.telepathy = -1;
     player.inventory.egg = 0;
     player.inventory.fish = 0;
     player.inventory.healthP = 0;
