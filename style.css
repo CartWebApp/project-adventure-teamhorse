@@ -202,6 +202,7 @@ h2 {
 
 .inventoryItem:hover {
     background-color: rgba(128, 128, 128, 0.8);
+    cursor: pointer;
 }
 
 hr {
