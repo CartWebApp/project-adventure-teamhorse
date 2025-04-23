@@ -106,7 +106,6 @@ const questionJourney4Chad = new storyPart
 const questionJourney5Chad = new storyPart
 const questionJourney6Chad = new storyPart
 
-
 // Owain's path below
 const wastelandDepartOwain = new storyPart(`8b`, [``,``])
 const wastelandFightOwainWin = new storyPart(`8ba`, [``,``])
