@@ -217,6 +217,9 @@ hr {
     100% {top: 0px;}
 }
 
+/* on mobile, for media queries, make the arrow position relative and have no left padding to avoid the arrow sliding on the page*/
+
+
 /* Can be changed. I don't love it but I didn't just want the default font anymore. */
 /* @font-face {
     font-family: pixel;
