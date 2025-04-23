@@ -1,6 +1,6 @@
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
-let textSpeed = 0;
+let textSpeed = 10;
 const player = {
     health: 5,
     // Companion # meaning
@@ -96,15 +96,15 @@ const secondShopChad = new storyPart(`9ab`, [``,`Shopkeeper: “Welcome to my sh
 const pubChad = new storyPart(`9ac`, [``,`You sit at the pub and visit with the people there.`, `One person in particular caught your attention.`,`He introduced himself as Owain, a magical detective.`, `You talk with him over a drink and he even shows you a few party tricks before you guys say goodbye and go your separate ways.`], [{name: "Continue", efffect: ()=> moveTo(outpostChad)}])
 const ruinedTownChad = new storyPart(`10a`, [``, `You reunite with the knights and rest for the night.`, `After morning comes Chad pulls you aside.`, `Chad von Chad: “Take this, it is a sword of the highest quality.”`, `Chad von Chad:  “Once we continue the monsters will only get stronger and you will need it if you wish to survive.”`, `With your new sword in placed neatly at you side you and the knights continue forward to the depths of the wasteland.`, `Your group eventually encounters a ruined town.`, `The town appeared to have been long since abandoned and only occosioanlly used as a base for peopel like yourselves.`, `As you move deeper into the ruins you encounter the bodies of a group that came before you.`, `You are horrified at the sight, but you have no time to collect yourself as monsters surround you.`], [{name: "fight", effect: ()=> Fight(thirdFight)}])
 const ruinedTownFightLose = new storyPart(`10aa`, [``, `Chad von Chad: “The fights are only going to get harder from here on. PULL IT TOGETHER!”`, `You are saddened by your own incompetence.`], [{name: "Continue", effect: ()=> moveTo(searchRuins)}])
-const ruinedTownFightWin = new storyPart(`10ab`, [``, `Chad von Chad: “HAHAHA! You are an amazing fighter."` `Chad von Chad: "Once we return please consider joining us as a fellow knight.”`, `Chad's sincere praise boosts your confidence and you begin to consider joining the Kights of the Square Table.`], [{name: "Continue", effect: ()=> moveTo(searchRuins)}])
-const searchRuins = new storyPart(`11a`, [``, `After the fight you, Kameron, and Chad's knights investigate the ruins and prepare to bury the bodies of the deceased.`, `During your investigation one of the knights discover a note written in dried blood.`, `The note reads: ‘BEWARE SGRIOBHADAIR, MASTER OF THE ACCURSED TOWER’`, `Chad von Chad: “It seems that we have found our target.”`, `Kameron: “It seems this Sgri-”`, `Kameron: "Sgior..."`, `Kameron: "Sgribadaba...."`, `It appears that Kameron can't quite pronounce the name so you help him out.`, `You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ.”`, `Kameron: “Ahem!” “It seems Sgrioghadair is the source of these rampaging monsters.”`, `Chad von Chad: “So our destination is that tower in the distance.”`, `You turn to look at the ominous tower that only recently came into veiw.`, `Chad von Chad: “REST UP MEN! We will have to fight our hardest if we wish to put an end to all of this.”`, `You, Kameron, and the knights set up camp in the ruined village and night falls.`], [{name: "Rest", effect: moveTo(questionJourneyChad)}])
-const questionJourneyChad = new storyPart(`11ab`, [``,`After checking your gear you finally have some time to yourself and you think about the journey ahead.`, `You begin to question whether you really want to fight an unknown monster beyond anything you have ever seen just to get some information on your horse.`], [{name: "Question the journey", effect: ()=> moveTo(questionJourney1Chad)}], [{name: "Don't question it", effect: ()=> moveTo(toTheTowerChad)}])
-const questionJourney1Chad = new storyPart
-const questionJourney2Chad = new storyPart
-const questionJourney3Chad = new storyPart
-const questionJourney4Chad = new storyPart
-const questionJourney5Chad = new storyPart
-const questionJourney6Chad = new storyPart
+const ruinedTownFightWin = new storyPart(`10ab`, [``, `Chad von Chad: “HAHAHA! You are an amazing fighter."`,`Chad von Chad: "Once we return please consider joining us as a fellow knight.”`, `Chad's sincere praise boosts your confidence and you begin to consider joining the Kights of the Square Table.`], [{name: "Continue", effect: ()=> moveTo(searchRuins)}])
+const searchRuins = new storyPart(`11a`, [``, `After the fight you, Kameron, and Chad's knights investigate the ruins and prepare to bury the bodies of the deceased.`, `During your investigation one of the knights discover a note written in dried blood.`, `The note reads: ‘BEWARE SGRIOBHADAIR, MASTER OF THE ACCURSED TOWER’`, `Chad von Chad: “It seems that we have found our target.”`, `Kameron: “It seems this Sgri-”`, `Kameron: "Sgior..."`, `Kameron: "Sgribadaba...."`, `It appears that Kameron can't quite pronounce the name so you help him out.`, `You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ.”`, `Kameron: “Ahem!” “It seems Sgrioghadair is the source of these rampaging monsters.”`, `Chad von Chad: “So our destination is that tower in the distance.”`, `You turn to look at the ominous tower that only recently came into veiw.`, `Chad von Chad: “REST UP MEN! We will have to fight our hardest if we wish to put an end to all of this.”`, `You, Kameron, and the knights set up camp in the ruined village and night falls.`], [{name: "Rest", effect: () => moveTo(questionJourneyChad)}])
+const questionJourneyChad = new storyPart(`11ab`, [``,`After checking your gear you finally have some time to yourself and you think about the journey ahead.`,`You begin to question whether you really want to fight an unknown monster beyond anything you have ever seen just to get some information on your horse.`], [{name: "Question the journey", effect: ()=> moveTo(questionJourney1Chad)}], [{name: "Don't question it", effect: ()=> moveTo(toTheTowerChad)}])
+const questionJourney1Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+const questionJourney2Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+const questionJourney3Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+const questionJourney4Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+const questionJourney5Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+const questionJourney6Chad = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 
 
 // Owain's path below
@@ -113,7 +113,7 @@ const wastelandFightOwainWin = new storyPart(`8ba`, [``,``])
 const wastelandFightOwainLose = new storyPart(`8bb`, [``,``])
 const outpostOwain = new storyPart(`9b`, [``,``])
 const secondShopOwain = new storyPart(`9bb`, [``,`Shopkeeper: “Welcome to my shop! What are you looking for?”`], [{name: "Buy Health Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.healthP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Buy Shield Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.shieldP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Leave Shop", effect: () => moveTo(outpostOwain)}])
-const pubOwain = new storyPart(`9bc`, [``,`You sit at the pub and visit with the people there.`, `One person in particular caught your attention.` `He introduced himself as Chad, the commander of the Kinghts of the Square Table.`, `You talk with him over a couple of drinks as he recounts tales of his heroism.`  `Before you guys say goodbye and go your separate ways.`], [{name: "Continue", efffect: ()=> moveTo(outpostOwain)}])
+const pubOwain = new storyPart(`9bc`, [``,`You sit at the pub and visit with the people there.`, `One person in particular caught your attention.`,`He introduced himself as Chad, the commander of the Kinghts of the Square Table.`, `You talk with him over a couple of drinks as he recounts tales of his heroism.`,`Before you guys say goodbye and go your separate ways.`], [{name: "Continue", efffect: ()=> moveTo(outpostOwain)}])
 
 // All story parts go above this line
 
@@ -347,26 +347,34 @@ function fightLose(storyFight){
 
 }
 
-let inventoryDisplay = document.getElementById(`fullInventory`);
+const playerStats = document.getElementById(`playerStats`);
+const inventoryDisplay = document.getElementById(`fullInventory`);
 document.getElementById(`inventoryButton`).addEventListener(`click`, () => {
     update();
     if(inventoryDisplay.style.opacity == 0){
-        document.getElementById(`playerStats`).style.borderRadius = `0.5rem 0rem 0rem 0.5rem`;
+        playerStats.style.borderRadius = `0.5rem 0rem 0rem 0.5rem`;
         inventoryDisplay.style.opacity = 1;
     }else{
-        document.getElementById(`playerStats`).style.borderRadius = `0.5rem`;
+        playerStats.style.borderRadius = `0.5rem`;
         inventoryDisplay.style.opacity = 0;
     }
 });
 
 let currentPart = {};
-const beginning = new storyPart(`0`,[`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
-currentPart = beginning;
-setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
-
+const beginning = new storyPart(`0`,[``,`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
 const body = document.getElementById("fullBody");
-setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * textSpeed))
 const arrow = document.getElementById("textBoxArrow");
+playerStats.style.opacity = 0;
+document.getElementById(`fullTextBox`).style.opacity = 0;
+
+document.getElementById(`startButton`).addEventListener(`click`, () =>{
+    playerStats.style.opacity = 1;
+    document.getElementById(`fullTextBox`).style.opacity = 1;
+    document.getElementById(`title`).style.opacity = 0;
+    moveTo(beginning);
+    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
+    setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)))
+})
 
 textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
 function advanceDialogue(){
@@ -420,8 +428,8 @@ function egg(){
     document.getElementById(`fullTextBox`).style.opacity = 0;
     document.getElementById(`buttonDisplay`).style.opacity = 0;
     document.getElementById(`eggDisplay`).style.zIndex = 7;
-    document.getElementById(`playerStats`).style.opacity = 0;
-    document.getElementById(`fullInventory`).style.opacity = 0;
+    playerStats.style.opacity = 0;
+    inventoryDisplay.style.opacity = 0;
 
     let eggtml =``
     let width = Number(window.innerWidth);
@@ -455,6 +463,7 @@ function moveTo(nextPart){
     console.log(storyPathRecord);
     update();
     currentPart = nextPart;
+    changeBackgroundTo(nextPart);
     document.getElementById("buttonDisplay").innerHTML = "";
     console.log(currentPart)
     advanceDialogue();
@@ -519,4 +528,15 @@ function reset(){
     player.inventory.energyP = 0;
     update();
     moveTo(beginning);
+}
+
+function changeBackgroundTo(nextPart){
+    const background = document.getElementById(`backgroundDisplay`)
+    if(nextPart == beginning){
+        background.style.backgroundImage = `url(/images/path.jpg)`;
+    } else if(nextPart == firstTown){
+        background.style.backgroundImage = `url(/images/firstTown.jpeg)`;
+    } else if(nextPart == talkedToKnights){
+        background.style.backgroundImage = `url(/images/firstTownKnightCommander.jpeg)`
+    }
 }
