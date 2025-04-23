@@ -36,8 +36,8 @@ class monster {
     }
 };
 
-const firstMonster = new monster(`the monster`,5,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
-const secondMonster = new monster(`the cloaked figure`, 4, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
+const firstMonster = new monster(`the monster`,7,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
+const secondMonster = new monster(`the cloaked figure`, 6, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
 
 class storyPart {
     constructor(order,dialogue = [], options = []){
@@ -112,7 +112,7 @@ const wastelandFightOwainWin = new storyPart(`8aa`, [``,`Owain: “We did well. 
 const wastelandFightOwainLose = new storyPart(`8ab`, [``,`Owain: “Darnit! I didn't want to have to use this so soon”`, `Owain pulled out a small palm sized ball from his bag and began to inscribe runes onto it.`, `When he finished his inscriptions he threw the ball at the monster before the small item suddenly burst into a thick cloud of smoke.`, `Owain: "RUN NOW!"`, `As you and Owain run away defeated Kameron follows you from behind.`, `Kameron (whispering): “Hmm.. should we have trained for longer?”`], [{name: "Continue deeper into the wastelands", effect: ()=> moveTo(outpostOwain),}])
 const outpostOwain = new storyPart(`9a`, [``,`You, Owain, and Kameron continue forward and eventually arrive at an outpost that marks the entrance into the depths of the Wastelands.`, `The three of you split up and plan to meet back up before the sun sets.`, `You can go to the shop and restock items, visit the pub and relax over a nice drink, or wait for Owain and Kameron at the meeting location.`], [{name: "Shop", effect: ()=> moveTo(secondshopOwain)}, {name: "Visit pub", effect: ()=> moveTo(pubOwain)}, {name: "Wait for Owain and Kameron", effect: ()=> moveTo(stoneTabletOwain)}])
 const secondShopOwain = new storyPart(`9bb`, [``,`Shopkeeper: “Welcome to my shop! What are you looking for?”`], [{name: "Buy Health Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.healthP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Buy Shield Potion: £3", effect: ()=> {if(player.money >= 3){player.inventory.shieldP += 1; player.money -= 3}else{textType(document.getElementById("textDisplay"), `Shopkeeper: "I'm sorry, it appears you don't have enough money."`);}; update();}},{name: "Leave Shop", effect: () => moveTo(outpostOwain)}])
-const pubOwain = new storyPart(`9bc`, [``,`You sit at the pub and visit with the people there.`, `One person in particular caught your attention.`,`He introduced himself as Chad, the commander of the Kinghts of the Square Table.`, `You talk with him over a couple of drinks as he recounts tales of his heroism.`,`Before you guys say goodbye and go your separate ways.`], [{name: "Continue", efffect: ()=> moveTo(outpostOwain)}])
+const pubOwain = new storyPart(`9bc`, [``,`You sit at the pub and visit with the people there.`, `One person in particular caught your attention.`,`He introduced himself as Chad, the commander of the Kinghts of the Square Table.`, `You talk with him over a couple of drinks as he recounts tales of his heroism.`,`Before you guys say goodbye and go your separate ways.`], [{name: "Continue", effect: ()=> moveTo(outpostOwain)}])
 const stoneTabletOwain = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 const stoneTabletFightWin = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 const stoneTabletFightLose = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
@@ -124,6 +124,10 @@ const questionJourney3Owain = new storyPart(``,[``,``,``],[{name: `choice2`, eff
 const questionJourney4Owain = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 const questionJourney5Owain = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
 const questionJourney6Owain = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => moveTo()},{name: `choice1`, effect: () => moveTo()}]);
+
+
+
+
 // All story parts go above this line
 
 function Fight(storyFight){
