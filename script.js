@@ -1,3 +1,11 @@
+const images = [`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/forest.jpg`,`/images/healthPotion.png`,`/images/Kameron.jpg`,`/images/library.png`,`/images/magicTrick.jpeg`,`/images/Outpost.jpg`,`/images/Owain.png`,`/images/path.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/secondTown.jpeg`,`/images/shieldPotion.png`,`/images/shop.jpg`,`/images/stoneTablet.jpg`,`/images/titleImage.jpeg`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/triangle-on-a-line-svgrepo-com.svg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
+for(i = 0; i < images.length; i++){
+    preload_image(images[i]);
+}
+function preload_image(im_url) {
+    let img = new Image();
+    img.src = im_url;
+}
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
 let textSpeed = 10;
@@ -38,6 +46,8 @@ class monster {
 
 const firstMonster = new monster(`the monster`,7,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
 const secondMonster = new monster(`the cloaked figure`, 6, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
+const finalBoss = new monster(`Sgrioghadair`,8,2,``,``,``)
+const trueFinalBoss = new monster(`True Sgrioghadair`,10,3,``,``,``)
 
 class storyPart {
     constructor(order,dialogue = [], options = []){
@@ -388,16 +398,14 @@ let currentPart = {};
 const beginning = new storyPart(`0`,[``,`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
 const body = document.getElementById("fullBody");
 const arrow = document.getElementById("textBoxArrow");
-playerStats.style.opacity = 0;
-document.getElementById(`fullTextBox`).style.opacity = 0;
 
 document.getElementById(`startButton`).addEventListener(`click`, () =>{
     playerStats.style.opacity = 1;
     document.getElementById(`fullTextBox`).style.opacity = 1;
     document.getElementById(`title`).style.opacity = 0;
     moveTo(beginning);
-    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)));
-    setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)))
+    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
+    setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)))
 })
 
 textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
