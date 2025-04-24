@@ -1,7 +1,8 @@
-const images = [`/images/titleImage.jpeg`,`/images/path.jpg`,`/images/Riverside.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/Kameron.jpg`,`/images/forest.jpg`,`/images/shop.jpg`,`/images/healthPotion.png`,`/images/shieldPotion.png`,`/images/secondTown.jpeg`,`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/magicTrick.jpeg`,`/images/Owain.png`,`/images/Owainhouse.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/stoneTablet.jpg`,`/images/THEBEAST.png`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
+const images = [`/images/titleImage.jpeg`,`/images/path.jpg`,`/images/Riverside.jpg`,`/images/forest.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/Kameron.jpg`,`/images/shop.jpg`,`/images/healthPotion.png`,`/images/shieldPotion.png`,`/images/secondTown.jpeg`,`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/magicTrick.jpeg`,`/images/Owain.png`,`/images/Owainhouse.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/stoneTablet.jpg`,`/images/THEBEAST.png`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
 for (i = 0; i < images.length; i++ ){
     preload_image(images[i])
 }
+const background = document.getElementById(`backgroundDisplay`)
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
 let textSpeed = 10;
@@ -40,7 +41,7 @@ class monster {
     }
 };
 
-const firstMonster = new monster(`the monster`,7,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
+const firstMonster = new monster(`the monster`,10,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
 const secondMonster = new monster(`the cloaked figure`, 6, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
 const finalBoss = new monster(`Sgrioghadair`,8,2,``,``,``)
 const trueFinalBoss = new monster(`True Sgrioghadair`,10,3,``,``,``)
@@ -199,6 +200,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, but they also attacked and both of you took damage.`);
                 Fight(storyFight)
             }
@@ -213,6 +215,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, but they blocked your attack, rendering it useless.`);
                 Fight(storyFight)
             }
@@ -227,6 +230,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to attack ${storyFight.monster.name}, and they were caught off guard by the quick attack.`);
                 Fight(storyFight);
             }
@@ -245,6 +249,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, and it blocked their attack, allowing for a counter attack.`);
                 Fight(storyFight)
             }
@@ -259,6 +264,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, but they also attempted to block, leaving no progress to be made in the battle.`);
                 Fight(storyFight)
             }
@@ -273,6 +279,7 @@ function Fight(storyFight){
                 fightWin(storyFight);
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to defend against ${storyFight.monster.name}'s attack, but they were waiting for your block and countered it without repercussion.`);
                 Fight(storyFight);
             }
@@ -290,6 +297,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, but they just attacked, leading to you taking damage.`);
                 Fight(storyFight);
             }
@@ -304,6 +312,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, and it worked, leading to a successful attack on ${storyFight.monster.name}.`);
                 Fight(storyFight)
             }
@@ -317,6 +326,7 @@ function Fight(storyFight){
                 fightWin(storyFight)
                 
             } else {
+                document.getElementById("textDisplay").textContent = ``;
                 textType(document.getElementById("textDisplay"), `You attempted to wait for ${storyFight.monster.name} to block so you could counterattack, but they had the same plan, leading to both of you awkwardly standing in place doing nothing.`);
                 Fight(storyFight);
             }
@@ -402,7 +412,7 @@ document.getElementById(`startButton`).addEventListener(`click`, () =>{
     document.getElementById(`fullTextBox`).style.opacity = 1;
     document.getElementById(`title`).style.opacity = 0;
     moveTo(beginning);
-    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
+    setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)));
     setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)))
 })
 
@@ -412,8 +422,9 @@ function advanceDialogue(){
     arrow.style.opacity = 0;
     if (currentPart.dialogue.length - 1 > currentDialogueNumber){
         currentDialogueNumber += 1;
+        document.getElementById("textDisplay").textContent = ``;
         textType(document.getElementById("textDisplay"), currentPart.dialogue[currentDialogueNumber]);
-        setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed + 1)));
+        setTimeout(() => (arrow.style.opacity = 1), ((currentPart.dialogue[currentDialogueNumber].length + 11) * (textSpeed)));
         setTimeout(() => body.addEventListener("click",advanceDialogue), ((currentPart.dialogue[currentDialogueNumber].length + 4) * textSpeed))
     } else {
         currentDialogueNumber = 0;
@@ -456,6 +467,7 @@ function fish(){
 }
 
 function egg(){
+    background.style.backgroundImage = `url(/images/secondTown.jpeg)`
     document.getElementById(`fullTextBox`).style.opacity = 0;
     document.getElementById(`buttonDisplay`).style.opacity = 0;
     document.getElementById(`eggDisplay`).style.zIndex = 70;
@@ -589,9 +601,12 @@ function reset(){
 }
 
 function changeBackgroundTo(nextPart){
-    const background = document.getElementById(`backgroundDisplay`)
     if(nextPart == beginning){
         background.style.backgroundImage = `url(/images/path.jpg)`;
+    } else if((nextPart == firstRight) || (nextPart == twoMonthsLater) || (nextPart == secondMiddle) || (nextPart == thirdMiddle) || (nextPart == secondLeft)){
+        background.style.backgroundImage = `url(/images/forest.jpg)`;
+    } else if(nextPart == firstLeft){
+        background.style.backgroundImage = `url(/images/Riverside.jpg)`;
     } else if(nextPart == firstTown){
         background.style.backgroundImage = `url(/images/firstTown.jpeg)`;
     } else if(nextPart == talkedToMayor){
@@ -603,11 +618,9 @@ function changeBackgroundTo(nextPart){
         if(currentDialogueNumber >= 14){
             background.style.backgroundImage = `url(/images/Kameron.jpg)`
         }
-    } else if(nextPart == twoMonthsLater){
-        background.style.backgroundImage = `url(/images/forest.jpg)`
     } else if((nextPart == firstShop) || (nextPart == secondShop)){
         background.style.backgroundImage = `url(/images/shop.jpg)`
-    } else if((nextPart == secondTown) || (nextPart == returnFromLibrary)){
+    } else if((nextPart == secondTown) || (nextPart == returnFromLibrary) || (nextPart == refusal)){
         background.style.backgroundImage = `url(/images/secondTown.jpeg)`
     } else if(nextPart == library){
         background.style.backgroundImage = `url(/images/library.png)`
@@ -618,8 +631,16 @@ function changeBackgroundTo(nextPart){
         if(currentDialogueNumber >= 14){
             background.style.backgroundImage = `url(/images/Owain.png)`
         }
-    }
+    } else if(nextPart == afterEggs){
+        background.style.backgroundImage = `url(/images/Owain.png)`
+    } else if(nextPart == meetChad){
+        background.style.backgroundImage = `url(/images/chadKnightGuild.jpeg)`
+        if(currentDialogueNumber >= 7){
+            background.style.backgroundImage = `url(/images/ChadVonChad.png)`
+        }
+    } 
 }
+
 function preload_image(im_url) {
     let img = new Image();
     img.src = im_url;
