@@ -1,10 +1,6 @@
-const images = [`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/forest.jpg`,`/images/healthPotion.png`,`/images/Kameron.jpg`,`/images/library.png`,`/images/magicTrick.jpeg`,`/images/Outpost.jpg`,`/images/Owain.png`,`/images/path.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/secondTown.jpeg`,`/images/shieldPotion.png`,`/images/shop.jpg`,`/images/stoneTablet.jpg`,`/images/titleImage.jpeg`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/triangle-on-a-line-svgrepo-com.svg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
-for(i = 0; i < images.length; i++){
-    preload_image(images[i]);
-}
-function preload_image(im_url) {
-    let img = new Image();
-    img.src = im_url;
+const images = [`/images/titleImage.jpeg`,`/images/path.jpg`,`/images/Riverside.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/Kameron.jpg`,`/images/forest.jpg`,`/images/shop.jpg`,`/images/healthPotion.png`,`/images/shieldPotion.png`,`/images/secondTown.jpeg`,`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/magicTrick.jpeg`,`/images/Owain.png`,`/images/Owainhouse.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/stoneTablet.jpg`,`/images/THEBEAST.png`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
+for (i = 0; i < images.length; i++ ){
+    preload_image(images[i])
 }
 let currentDialogueNumber = 0;
 let storyPathRecord = [];
@@ -616,12 +612,12 @@ function changeBackgroundTo(nextPart){
     } else if(nextPart == returnFirstTown){
         background.style.backgroundImage = `url(/images/firstTown.jpeg)`
         if(currentDialogueNumber >= 14){
-            background.style.backgroundImage = `url(images/Kameron.jpg)`
+            background.style.backgroundImage = `url(/images/Kameron.jpg)`
         }
     } else if(nextPart == twoMonthsLater){
         background.style.backgroundImage = `url(/images/forest.jpg)`
     } else if((nextPart == firstShop) || (nextPart == secondShop)){
-        background.style.backgroundImage = `url(/)`
+        background.style.backgroundImage = `url(/images/shop.jpg)`
     } else if((nextPart == secondTown) || (nextPart == returnFromLibrary)){
         background.style.backgroundImage = `url(/images/secondTown.jpeg)`
     } else if(nextPart == library){
@@ -629,9 +625,13 @@ function changeBackgroundTo(nextPart){
     } else if(nextPart == meetOwainPartOne){
         background.style.backgroundImage = `url(/images/secondTown.jpeg)`
     } else if(nextPart == meetOwainPartTwo){
-        background.style.backgroundImage = `url(/images/)`
+        background.style.backgroundImage = `url(/images/Owainhouse.jpg)`
         if(currentDialogueNumber >= 14){
             background.style.backgroundImage = `url(/images/Owain.png)`
         }
     }
+}
+function preload_image(im_url) {
+    let img = new Image();
+    img.src = im_url;
 }
