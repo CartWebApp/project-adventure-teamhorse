@@ -152,7 +152,7 @@ h2 {
     align-items: flex-start;
     padding-bottom: 1em;
     z-index: 5;
-    transition: opacity 0.5s;
+    transition: border-radius 0.5s, opacity 0.5s;
     opacity: 0;
 }
 
