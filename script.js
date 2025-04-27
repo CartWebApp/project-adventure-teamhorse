@@ -77,8 +77,8 @@ const example = new storyPart(``,[``,``,``],[{name: `choice2`, effect: () => mov
 // All story parts go below this line. 
 const beginning = new storyPart(`0`,[``,`Your name is Guy, you are riding your beloved horse, Korai.`,`You have reached a crossroads where you can choose to go left, continue forward, or go right.`],[{name: "Turn Left", effect: ()=> moveTo(firstLeft) ,}, {name: "Continue Forward", effect: ()=> moveTo(firstMiddle),},{name: "Turn Right", effect: ()=> moveTo(firstRight),}]);
 const firstLeft = new storyPart(`1a`,[``,`You are met with a clearing allowing for safe travel forward, but you can hear water flowing from a river. It might be a good idea to go fishing before continuing forward.`],[{name: "Go fishing", effect: ()=> moveTo(fishing),}, {name: "Continue without fishing", effect: ()=> moveTo(secondLeft),}]);
-const fishing = new storyPart(`1aa`,[``,`You pull out your rod and prepare bait.`],[{name: `Cast your Rod`, effect: () => {document.getElementById(`textDisplay`).textContent = ``; fish()}},{name: `Leave the River`, effect: () => moveTo(secondLeft)}]);
-const secondLeft = new storyPart(`1b`,[``,`You continue to the clearing ahead but are ambushed by a series of hooded figures.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to town", effect: ()=> moveTo(firstTown),}]);
+const fishing = new storyPart(`1aa`,[``,`You pull out your rod and prepare bait.`],[{name: `Cast your Rod`, effect: () => {document.getElementById(`textDisplay`).textContent = ``; fish()}},{name: `Leave the River`, effect: () => {moveTo(secondLeft); document.getElementById(`option#0`).style.opacity = 1; document.getElementById(`option#0`).style.zIndex = `auto`; }}]);
+const secondLeft = new storyPart(`1b`,[``,`You continue to the clearing ahead,but are ambushed by a series of hooded figures.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to town", effect: ()=> moveTo(firstTown),}]);
 const firstMiddle = new storyPart(`2a`,[``,`You continue down the middle, but you quickly realize that the path ahead is blocked by a huge boulder about the size of a small house.`,`‘This wasn’t here before.’ You question the mysterious boulder, but there is nothing you can do about it.`,`You decide to go around it either to the right or left. Korai seems to want to go left.`],[{name: "Go back left", effect: ()=> moveTo(secondMiddle),} ,{name: "Go back right", effect: ()=> moveTo(thirdMiddle),}]);
 const secondMiddle = new storyPart(`2b`,[``,`You reach a clearing and are ambushed by a group of hooded figures.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: ()=> moveTo(firstTown),}]);
 const thirdMiddle = new storyPart(`2c`,[``,`You go right to avoid the boulder, but are very quickly ambushed by hooded figures hiding in the nearby shrubbery.`,`Korai pauses for a brief moment before getting frightened, knocking you off his back.`,`As Korai runs off in fear you gather yourself and try to follow your precious horse while avoiding the mysterious men.`,`You lose Korai and, despite your worry, you decide that it would be best to continue to town to get help.`],[{name: "Go to Town", effect: ()=> moveTo(firstTown),}]);
@@ -557,8 +557,20 @@ function fish(){
     document.getElementById("textDisplay").textContent = ``;
     textDisplay(document.getElementById("textDisplay"), `A Bite!!`);
     body.removeEventListener("click",advanceDialogue);
-    setTimeout(() => body.addEventListener("click", ()=> {textDisplay(document.getElementById("textDisplay"),`You caught a fish!`); player.fish = 1}),1) 
-    setTimeout(() => {body.removeEventListener("click",()=> {textDisplay(document.getElementById("textDisplay"),`You caught a fish!`); player.fish = 1}); if(player.fish == 0){textType(document.getElementById("textDisplay"),`The fish got away`)}}, 5);
+    setTimeout(() => body.addEventListener("click", getFish), 1)
+    function getFish(){
+        textDisplay(document.getElementById("textDisplay"),`You caught a fish!`); 
+        player.inventory.fish = 1;
+        document.getElementById(`option#0`).style.opacity = 0; 
+        document.getElementById(`option#0`).style.zIndex = -1;
+    }
+    function missedFish(){
+        body.removeEventListener("click", getFish); 
+        if(player.inventory.fish == 0){
+            textDisplay(document.getElementById("textDisplay"),`The fish got away.`)
+        }
+    }
+    setTimeout(missedFish, 200);
 }
 
 function egg(){
