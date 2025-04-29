@@ -11,6 +11,7 @@ let currentDialogueNumber = 0;
 let storyPathRecord = [];
 let textSpeed = 8;
 let inCombat = false;
+let turnNumber = 0;
 const player = {
     health: 5,
     // Companion # meaning
@@ -37,6 +38,7 @@ class monster {
     // 2: Used for the final boss, which ending occurs depends on the player's companion and if they won or lost.
     // 3: Used for the true final boss, which ending occurs depends on the player's companion and if they won or lost.
     // 4: Used for fights within the maze. Don't add to the losses variable.
+    // 5: Used for the Beast
     constructor(name,health = 2,ending = 0,attackPhrase = ``,defendPhrase = ``,waitPhrase = ``){
         this.name = name;
         this.health = health;
@@ -50,6 +52,7 @@ class monster {
 const firstMonster = new monster(`the monster`,10,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
 const secondMonster = new monster(`the cloaked figure`, 6, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
 const mazeMonster = new monster(`Gromblin`, 3, 4,`The Gromblin feels anger, but moreover a sense of boredom.`,`The Gromblin is scared, and longs to go home after its shift.`,`The Gromblin is using its two brain cells to strategize.`)
+const beast = new monster(`The Beast`, 100, 5,`The Beast's immense power prevents you from gaining any information.`,`The Beast's immense power prevents you from gaining any information.`,`The Beast's immense power prevents you from gaining any information.`)
 const finalBoss = new monster(`Sgriobhadair`,8,2,``,``,``)
 const trueFinalBoss = new monster(`The True Sgriobhadair`,10,3,``,``,``)
 
@@ -71,6 +74,7 @@ class fight {
 const firstFight = new fight("You prep for battle, shaking. You know that attacking beats waiting, defending beats attacking, and waiting beats defending. You don't know what the enemy will do.",firstMonster,player.companion);
 const secondFight = new fight("You prep for battle, anxious for your first real battle. You know that attacking beats waiting, defending beats attacking, and waiting beats defending. The figure might give clues on what it will do based on its emotions." ,secondMonster,player.companion);
 const mazeFight = new fight(`As you walk you meet a wall and a Gromblin approaches you from behind, somewhat annoyed.`,mazeMonster,player.companion);
+const beastFight = new fight()
 const bossFight = new fight(`You prepare for combat, ready for the fight of your life.`,finalBoss,player.companion)
 const trueBoss = new fight()
 
@@ -189,9 +193,9 @@ const questionJourney4Owain = new storyPart(`11ae`,[``,`You: ‘Even if I couldn
 const questionJourney5Owain = new storyPart(`11af`,[``,`You: ‘Heck, like Kameron said, Korai is way beyond the age a normal horse should be able to live.’`,`You: ‘There’s no guarantee that Korai hasn’t passed away somewhere or won’t pass away soon after I find him.’`],[{name: `Run away`, effect: () => moveTo(runAwayEndingOwain)}]);
 const runAwayEndingOwain = new storyPart(`E4b`,[``,`As you continue to question the journey ahead you realize that risking your life for a horse past its prime is not really worth it.`,`You gather your things and prepare to sneak out in the middle of the night.`, `Once Owain and Kameron have fallen asleep you leave them behind and head back to town.`, `A week passes and you finally arrive at town feeling refreshed.`, `You spend the rest of your days in the town and marry a beautiful woman and have three children.`, `THE END`],[{name: `Restart game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Go back`, effect: () => moveTo(questionJourneyOwain)}]);
 const restBeforeTowerOwain = new storyPart(`11bg`,[``,`Despite your concerns you decide to not question the viability of this journey any longer.`,`After all, this is all for your beloved and innocent horse.`, `You head off to bed prepared for the journey ahead.`],[{name: `Continue`, effect: () => moveTo(towerEntranceOwain)}]);
-const towerEntranceOwain = new storyPart(`12b`,[``,`As you arrive at the tower Owain inspects the perimeter with magic and you and Kameron use your telepathy to detect any nearby enemies.`,`The coast is clear.`, `You approach the entrance to the tower and place your hands on the large doors to open them.`, `They creak open and-`, `Kameron: “GUY! STOP! SOMETHING”S COMING!”`, `At Kameron’s warning your telepathic powers begin to flare up.`, `You detect something akin to pure hatred.`, `But…`, `You: “There’s nothing?”`, `Then, the sky darkened, bleeding into a shadowed hue, and from the depths of that gloom, a shape loomed.`, `An impossible, grotesque semblance of a mountain, staggering and unearthly in its motion.`, `Its movements distorted that which existed around it.`, `It did not approach with sound; it was a thing of silence, a soundless behemoth drawing nearer.`, `It was so large that your eyes began to betray you as you tried to calculate its size.`, `Just moments ago it appeared to be a colossal mountain, but now it felt as though you were simply staring at the shadow of a larger being.`, `There is nowhere to run.`, `You must fight.`],[{name: `Fight`, effect: () => moveTo(beastFight)}]);
+const towerEntranceOwain = new storyPart(`12b`,[``,`As you arrive at the tower Owain inspects the perimeter with magic and you and Kameron use your telepathy to detect any nearby enemies.`,`The coast is clear.`, `You approach the entrance to the tower and place your hands on the large doors to open them.`, `They creak open and-`, `Kameron: “GUY! STOP! SOMETHING”S COMING!”`, `At Kameron’s warning your telepathic powers begin to flare up.`, `You detect something akin to pure hatred.`, `But…`, `You: “There’s nothing?”`, `Then, the sky darkened, bleeding into a shadowed hue, and from the depths of that gloom, a shape loomed.`, `An impossible, grotesque semblance of a mountain, staggering and unearthly in its motion.`, `Its movements distorted that which existed around it.`, `It did not approach with sound; it was a thing of silence, a soundless behemoth drawing nearer.`, `It was so large that your eyes began to betray you as you tried to calculate its size.`, `Just moments ago it appeared to be a colossal mountain, but now it felt as though you were simply staring at the shadow of a larger being.`, `There is nowhere to run.`, `You must fight.`],[{name: `Fight`, effect: () => Fight(beastFight)}]);
 const afterBeastFightOwain = new storyPart(`13b`,[``,`No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Kameron has been going all out while buffed by Owain holding back the beast all by himself.`, `Finally, Kameron hits the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “OWAIN TAKE GUY AND FINISH THIS!"`, `Owain: “All right."`, `Owain casts one last buff on Kameron and uses his magic to grab you and run towards the tower.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Owain does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronOwain)}]);
-const ripKameronOwian = new storyPart(`14b`,[``,`After being given some time to grieve Owain urges you to continue.`,`Owain: “I can offer no words of consolation, but the end is near. Let's finish this.”`, `Owain: “For Kameron.”`],[{name: `For Kameron`, effect: () => moveTo(inTheTowerOwain)}]);
+const ripKameronOwain = new storyPart(`14b`,[``,`After being given some time to grieve Owain urges you to continue.`,`Owain: “I can offer no words of consolation, but the end is near. Let's finish this.”`, `Owain: “For Kameron.”`],[{name: `For Kameron`, effect: () => moveTo(inTheTowerOwain)}]);
 const inTheTowerOwain = new storyPart(`15b`,[``,`The door to the outside world won’t open and it urges you to continue forward.`,`You and Owain continue into the tower.`,`You reach a room filled with the remains of unfortunate adventurers you entered the tower.`,`On the wall to the right there appears to be a map of a maze and in front of you there is a dark corridor.`,`Owain: “It appears that the way forward is blocked by a maze.”`,`You: “Luckily, it seems we aren’t the first here.”`,`Owain: “Yes. These men seemed to have tested out the maze for us. How fortunate for us!”`,`You: “As long as we keep these instructions in mind we should be able to reach Sgriobhadair.”`],[{name: `Venture into the maze`, effect: () => moveTo(instructionsOwain)}]);
 const instructionsOwain = new storyPart(`15ba`,[``,`The instructions are...`,`At the first fork go right, then continue forward until you are met with only two paths.`, `Go left twice, then right once more.`, `Finally you must go straight until you see the end.`, `Are you ready?`],[{name: `Yes`, effect: () => moveTo(maze1Owain)},{name: `No, I need to review again`, effect: () => moveTo(instructionsOwain)}]);
 const maze1Owain = new storyPart(`16b`,[``,`You enter the maze and are met with a fork in the paths`,`You can go right, forward, or left.`],[{name: `Go right`, effect: () => moveTo(maze2Owain)},{name: `Go Forward`, effect: () => Fight(mazeFight)}, {name: `Go left`, effect: ()=> Fight(mazeFight)}]);
@@ -233,7 +237,19 @@ const trueBossWinOwen = new storyPart(`E11b`,[``,`After a long battle you finall
 // All story parts go above this line
 
 function Fight(storyFight){
-    textType(document.getElementById("textDisplay"), storyFight.dialogue);
+    turnNumber += 1;
+    if(turnNumber == 1){
+        textType(document.getElementById("textDisplay"), storyFight.dialogue);
+    }
+    if((turnNumber == 5) && (storyFight == beastFight)){
+        inCombat = false;
+        turnNumber = 0;
+        if(storyFight.companion == 1){
+            moveTo(afterBeastFightChad);
+        } else if(storyFight.companion == 2){
+            moveTo(afterBeastFightChad);
+        }
+    }
     storyFight.companion = player.companion;
     let buttonHtml = ``;
     inCombat = true;
@@ -431,6 +447,7 @@ function Fight(storyFight){
 
 
 function fightWin(storyFight){
+    turnNumber = 0;
     inCombat = false;
     document.getElementById("textDisplay").textContent = ``;
     if(storyFight.monster.ending === 1){
@@ -463,6 +480,7 @@ function fightWin(storyFight){
 }
 
 function fightLose(storyFight){
+    turnNumber = 0;
     inCombat = false;
     document.getElementById("textDisplay").textContent = ``;
     if(storyFight.monster.ending === 1){
@@ -775,6 +793,8 @@ function changeBackgroundTo(nextPart){
         background.style.backgroundImage = `url(/images/stoneTablet.jpg)`
     } else if(nextPart == ruinedTownChad){
         background.style.backgroundImage = `url(/images/ruinedTown.jpg)`
+    } else if((nextPart == towerEntranceChad)|| (nextPart == towerEntranceOwain)){
+        background.style.backgroundImage = `url(/images/EVILTOWER.jpg)`
     }
 }
 
