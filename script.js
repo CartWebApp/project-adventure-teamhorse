@@ -51,6 +51,7 @@ class monster {
 
 const firstMonster = new monster(`the monster`,10,1,`I don't know how you're seeing this, but he's planning to attack`,`I don't know how you're seeing this, but he's planning to defend`,`I don't know how you're seeing this, but he's planning to wait for you to defend`)
 const secondMonster = new monster(`the cloaked figure`, 6, 0,`The figure feels intense anger, and a want for the fight to be over.`,`The figure has a brief moment of fear.`,`The figure plots for something sneaky.`)
+const thirdMonster = new monster(``,6,0,``,``,``);
 const mazeMonster = new monster(`Gromblin`, 3, 4,`The Gromblin feels anger, but moreover a sense of boredom.`,`The Gromblin is scared, and longs to go home after its shift.`,`The Gromblin is using its two brain cells to strategize.`)
 const beast = new monster(`The Beast`, 100, 5,`The Beast's immense power prevents you from gaining any information.`,`The Beast's immense power prevents you from gaining any information.`,`The Beast's immense power prevents you from gaining any information.`)
 const finalBoss = new monster(`Sgriobhadair`,8,2,``,``,``)
@@ -123,7 +124,7 @@ const ruinedTownChad = new storyPart(`10a`, [ ``, `Your group eventually encount
 const ruinedTownFightLose = new storyPart(`10aa`, [``, `Chad von Chad: “The fights are only going to get harder from here on. PULL IT TOGETHER!”`, `You are saddened by your own incompetence.`], [{name: "Continue", effect: ()=> moveTo(searchRuins)}])
 const ruinedTownFightWin = new storyPart(`10ab`, [``, `Chad von Chad: “HAHAHA! You are an amazing fighter."`,`Chad von Chad: "Once we return please consider joining us as a fellow knight.”`, `Chad's sincere praise boosts your confidence and you begin to consider joining the Kights of the Square Table.`], [{name: "Continue", effect: ()=> moveTo(searchRuins)}])
 const youSuckEndingChad = new storyPart(`E3a`,[``,`Chad von Chad: “The fights are only going to get harder from here on. PULL IT TOGETHER!”`,`The knights look at you with pity and begin to whisper among themselves.`, `You, Kameron, and Chad's knights investigate the ruins and prepare to bury the bodies of the deceased.`, `During your investigation one of the knights discover a note written in dried blood.`, `The note reads: ‘BEWARE SGRIOBHADAIR, MASTER OF THE ACCURSED TOWER’`, `Chad von Chad: “It seems that we have found our target.”`, `Kameron: “It seems this Sgri-”`, `Kameron: "Sgior..."`, `Kameron: "Sgribadaba...."`, `It appears that Kameron can't quite pronounce the name so you help him out.`, `You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ.”`, `Kameron: “Ahem!” “It seems Sgriobhadair is the source of these rampaging monsters.”`, `Chad von Chad: “So our destination is the tower in the distance.”`, `You turn to look at the ominous tower that only recently came into veiw.`, `Chad von Chad: “REST UP MEN! We will have to fight our hardest if we wish to put an end to all of this.”`, `Before you can leave to set up your tent Chad pulls you aside with Kameron.`, `Chad von Chad: "Guy, you need to head back."`, `You: "What?", 'Kameron looks equally as surprised as you, but he nods his head in agreement.`, `Kameron: "CHad's right, you have held back the group too much."`, `You: "B-but what about Korai!?!"`, `Kameron: "I will escort you back to town and reunite with the knights before the tower."`, `Kameron: "I promise to continue the search in your stead."`, `Chad von Chad: "Will you be able to catch back up with us Kameron?"`, `Kameron: "Haha, don't worry about me I am stronger than these white hairs let on."`, `CHad von Chad: "Alright, once day breaks Kameron will escort you back Guy, then he will rendevous with us and continue teh journey from there."`, `You wish to refute the two men, but deep down you know you can't.`,`Deep down you know that you suck.`],[{name: `Return to town`, effect: () => moveTo(youSuckEndingChad2)}]);
-const youSuckEndingChad2 = new storyPart(`E3aa`,[``,`You are escorted to town and told to wait at the Knight's Guild.`,`You wait`, `And wait`, `And wait`, `And wait`, `And wait`, `Weeks have past and Chad and Kameron have yet to return.`, `You finally decide to act and prepare to return back to the wastelands.`, `You gather your things and finally arrive at the border of the wastelands.`, `You cross the border with determination, but are immediately ambushed by a single small monster and get mauled to death.`, `Later Kameron and Chad return, but they are unable to find you.`,`THE END`], [{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Restart at last fight`, effect: () => moveTo(ruinedTownChad)}, {name: 'Restart at the beginningof the Wastelands', effect: () => moveTo(wastelandDepartChad)}]);
+const youSuckEndingChad2 = new storyPart(`E3aa`,[``,`You are escorted to town and told to wait at the Knight's Guild.`,`You wait.`, `And wai.t`, `And wait.`, `And wait.`, `And wait.`, `Weeks have past and Chad and Kameron have yet to return.`, `You finally decide to act and prepare to return back to the wastelands.`, `You gather your things and finally arrive at the border of the wastelands.`, `You cross the border with determination, but are immediately ambushed by a single small monster and get mauled to death.`, `Later Kameron and Chad return, but they are unable to find you.`,`THE END`], [{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Restart at last fight`, effect: () => moveTo(ruinedTownChad)}, {name: 'Restart at the beginningof the Wastelands', effect: () => moveTo(wastelandDepartChad)}]);
 const searchRuins = new storyPart(`11a`, [``, `After the fight you, Kameron, and Chad's knights investigate the ruins and prepare to bury the bodies of the deceased.`, `During your investigation one of the knights discover a note written in dried blood.`, `The note reads: ‘BEWARE SGRIOBHADAIR, MASTER OF THE ACCURSED TOWER’`, `Chad von Chad: “It seems that we have found our target.”`, `Kameron: “It seems this Sgri-”`, `Kameron: "Sgior..."`, `Kameron: "Sgribadaba...."`, `It appears that Kameron can't quite pronounce the name so you help him out.`, `You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ.”`, `Kameron: “Ahem!” “It seems Sgriobhadair is the source of these rampaging monsters.”`, `Chad von Chad: “So our destination is the tower in the distance.”`, `You turn to look at the ominous tower that only recently came into veiw.`, `Chad von Chad: “REST UP MEN! We will have to fight our hardest if we wish to put an end to all of this.”`, `You, Kameron, and the knights set up camp in the ruined village and night falls.`], [{name: "Rest", effect: () => moveTo(questionJourneyChad)}])
 const questionJourneyChad = new storyPart(`11aa`, [``,`After checking your gear you finally have some time to yourself and you think about the journey ahead.`,`You begin to question whether you really want to fight an unknown monster beyond anything you have ever seen just to get some information on your horse.`], [{name: "Question the journey", effect: ()=> moveTo(questionJourney1Chad)}], [{name: "Don't question it", effect: ()=> moveTo(restBeforeTowerChad)}])
 const questionJourney1Chad = new storyPart(`11ab`,[``,`You: ‘I mean I love Korai, but I might actually die if I continue forward.’`],[{name: `Question it even more`, effect: () => moveTo(questionJourney2Chad)},{name: `Ignore your doubts`, effect: () => moveTo(restBeforeTowerChad)}]);
@@ -137,6 +138,7 @@ const towerEntranceChad = new storyPart(`12a`,[``,`As dawn broke you, Kameron, a
 const afterBeastFightChad = new storyPart(`13a`,[``,`No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Chad and Kameron have been going all out holding back the beast all by themselves.`, `Finally, Chad and Kameron hit the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “CHAD! TAKE YOUR KNIGHTS AND GUY AND FINISH THIS!”`, `Chad von Chad: “All right!”`, `Chad leads his knights inside and grabs you as he runs.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Chad does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronChad)}]);
 const ripKameronChad = new storyPart(`14a`,[``,`After being given some time to grieve Chad urges you to continue.`,`Chad von Chad: “I know your pain, but the end is near. Let's finish this.”`, `Chad von Chad: “For Kameron.”`],[{name: `For Kameron`, effect: () => moveTo(inTheTowerChad)}]);
 const inTheTowerChad = new storyPart(`15a`,[``,`The door to the outside world won’t open and it urges you to continue forward.`,`You Chad, and a few other knights continue deeper into the tower.`, `You reach a room filled with the remains of unfortunate adventurers you entered the tower.`, `On the wall to the right there appears to be a map of a maze and in front of you there is a dark corridor.`, `Chad von Chad: “It appears that the way forward is blocked by a maze.”`, `You: “Luckily, it seems we have recieved help from our predecessors.”`, `Chad von Chad: “Yes. These brave men sacrificed themselves to create a map of the maze.”`, `You see a list of instructions carved into the walls.`, `The instructions are as follows:`, `At the first fork go right, then continue forward until you are met with only two paths.`, `Go left twice, then right once more.`, `Finally you must go straight until you see the end.`, `You finish reading the instructions and look towards the maze.`],[{name: `Enter maze`, effect: () => moveTo(maze1Chad)},{name: `Review Instructions`, effect: () => moveTo(instructionsChad)}]);
+const backToBeginningChad = new storyPart(`15a`,[``,`After the battle, you and Chad are pushed to the beginning of the maze.`],[{name: `Go to the Instructions`, effect: () => moveTo(instructionsChad)}]);
 const instructionsChad = new storyPart(`15aa`,[``,`The instructions are...`,`At the first fork go right, then continue forward until you are met with only two paths.`, `Go left twice, then right once more.`, `Finally you must go straight until you see the end.`, `Are you ready?`],[{name: `Yes`, effect: () => moveTo(maze1Chad)},{name: `No, I need to review again`, effect: () => moveTo(instructionsChad)}]);
 const maze1Chad = new storyPart(`16a`,[``,`You enter the maze and are met with a fork in the paths`,`You can go right, forward, or left.`],[{name: `Go right`, effect: () => moveTo(maze2Chad)},{name: `Go Forward`, effect: () => Fight(mazeFight)}, {name: `Go left`, effect: ()=> Fight(mazeFight)}]);
 const maze2Chad = new storyPart(`16aa`,[``,`You continue right and are met with another three way split in the path.`,`You can go right, forward, or left`], [{name: `Go right`, effect: () => Fight(mazeFight)},{name: `Go Forward`, effect: () => moveTo(maze3Chad)}, {name: `Go left`, effect: ()=> Fight(mazeFight)}]);
@@ -182,8 +184,8 @@ const leaveOutpostOwain = new storyPart(`9bd`,[``,`You reunite with Owain and Ka
 const stoneTabletOwain = new storyPart(`10b`, [``, `You follow Owain for a while before arriving at a giant stone tablet with writing carved into it.`, `This appears to be the result of a lead that Owain had.`, `Owain approaches the tablet to transcribe the writing, but he is interrupted by a low growl from behind the tablet.`, `“Grrrrrr”`, `A monster appears from behind the tablet.`, `It is heavily scarred and behind it stands a cloaked man.`, `Cloaked Man: “How dare you try to read the great scripture!”`, `Cloaked Man: "I WILL TEAR YOU TO PIECES AS PUNISHMENT!"`], [{name: "Fight", effect: ()=> Fight(thirdFight)}])
 const stoneTabletFightWin = new storyPart(`10ba`,[``,`Owain: “Ha! It seems they are no match for us.”`,`Owain is beyond happy at your strength.`, `Owain: “Guy! Once we return, remind me to offer you a job at my agency!”`, `Owain’s offer makes you feel confident and gives you something to look forward to after the journey.`],[{name: `Continue`, effect: () => moveTo(owainTranslateTablet)}]);
 const stoneTabletFightLose = new storyPart(`10bb`,[``,`Owain: “I didn’t want to have to use this!”`,`Owain pulls out a small cube from his bag.`, `After tinkering with the cube a bit he throws it at the monster and the cloaked man.`, `The cube explodes and completely eviscerates your enemies.`, ` Owain: “We are lucky they didn't have us surrounded or else we would have been caught in the explosion."`, `Owain: *sssiiiggghh* That was the only one I had. Are we really this weak?”`, `You are saddened by your own incompetence.`],[{name: `Continue`, effect: () => moveTo(owainTranslateTablet)}]);
-const youSuckEndingOwain = new storyPart(`E3b`,[``,`Before translating the tablet Owain glances between you and Kameron and whispers to himself.`,`Owain moves forward and begins to translate.`, `Owain transcribes what the tablet says on a piece of paper before showing you and Kameron.`, `It reads: ‘SGRIOBHADAIR, MASTER OF THE BLESSED TOWER. HE WILL SAVE US ALL FROM THE LIMITATIONS OF THIS WORLD.’`, `Owain: “It seems that we have found our target.”`, `Kameron: “It seems Sgri- Sgior- Sgribada-”`, `Kameron seems to be having trouble reading the name so you decide to help him out.`,`You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ”`, `Kameron: “Ahem! It seems Sgriobhadair is the source of these rampaging monsters.”`, `Owain: “So the goal is the tower in the distance."`, `Owain: "We should rest for the night."`, `You prepare yourself for the journey ahead, but Owain and Kameron approach yo with serious looks.`,`You: "What's wrong."`, `Kameron: "Well, Guy... Don't take this the wrong way but..."`, `Kameron seems to be struggling to tell you something.`, `Owain: "You suck at fighting Guy."`, `You: "What?"`, `Owain: "Both fights we have fought in have been lost because of you."`, `You look to Kameorn but he offers no consolation.`, `Kameron: "He's right. I thought I had trained you enough but you still lack in a lot of areas."`, `Owain: "Me and Kameron will continue the journey, but we will first escort you back to town where you will wait for us to return."`, `You: "B-but what about Korai!?! How am I supposed to find my horse!?!"`, `Kameron: "I will look for Korai, but you are far to weak to continue the journey."`, `You are shocked that you journey has to end so soon, but you can say nothing to Owain and Kameron because they are right.`, `You suck.`],[{name: `Return to town`, effect: () => moveTo(youSuckEndingOwain2)}]);
-const youSuckEndingOwain2 = new storyPart(`E3ba`,[``,`You are escorted to town and told to wait at Owain's house.`,`You wait`, `And wait`, `And wait`, `And wait`, `And wait`, `Weeks have past and Owain and Kameron have yet to return.`, `You finally decide to act and prepare to return back to the wastelands.`, `You gather your things and finally arrive at the border of the wastelands.`, `You cross the border with determination, but are immediately ambushed by a single small monster and get mauled to death.`, `Later Kameron and Owain return, but they are unable to find you.`,`THE END`], [{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Restart at last fight`, effect: () => moveTo(stoneTabletOwain)}, {name: 'Restart at the beginningof the Wastelands', effect: () => moveTo(wastelandDepartOwain)}]);
+const youSuckEndingOwain = new storyPart(`E3b`,[``,`Before translating the tablet Owain glances between you and Kameron and whispers to himself.`,`Owain moves forward and begins to translate.`, `Owain transcribes what the tablet says on a piece of paper before showing you and Kameron.`, `It reads: ‘SGRIOBHADAIR, MASTER OF THE BLESSED TOWER. HE WILL SAVE US ALL FROM THE LIMITATIONS OF THIS WORLD.’`, `Owain: “It seems that we have found our target.”`, `Kameron: “It seems Sgri- Sgior- Sgribada-”`, `Kameron seems to be having trouble reading the name so you decide to help him out.`,`You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ”`, `Kameron: “Ahem! It seems Sgriobhadair is the source of these rampaging monsters.”`, `Owain: “So the goal is the tower in the distance."`, `Owain: "We should rest for the night."`, `You prepare yourself for the journey ahead, but Owain and Kameron approach you with serious looks.`,`You: "What's wrong."`, `Kameron: "Well, Guy... Don't take this the wrong way but..."`, `Kameron seems to be struggling to tell you something.`, `Owain: "You suck at fighting Guy."`, `You: "What?"`, `Owain: "Both fights we have fought in have been lost because of you."`, `You look to Kameorn but he offers no consolation.`, `Kameron: "He's right. I thought I had trained you enough but you still lack in a lot of areas."`, `Owain: "Me and Kameron will continue the journey, but we will first escort you back to town where you will wait for us to return."`, `You: "B-but what about Korai!?! How am I supposed to find my horse!?!"`, `Kameron: "I will look for Korai, but you are far to weak to continue the journey."`, `You are shocked that you journey has to end so soon, but you can say nothing to Owain and Kameron because they are right.`, `You suck.`],[{name: `Return to town`, effect: () => moveTo(youSuckEndingOwain2)}]);
+const youSuckEndingOwain2 = new storyPart(`E3ba`,[``,`You are escorted to town and told to wait at Owain's house.`,`You wait.`, `And wait.`, `And wait.`, `And wait.`, `And wait.`, `Weeks have past and Owain and Kameron have yet to return.`, `You finally decide to act and prepare to return back to the wastelands.`, `You gather your things and finally arrive at the border of the wastelands.`, `You cross the border with determination, but are immediately ambushed by a single small monster and get mauled to death.`, `Later Kameron and Owain return, but they are unable to find you.`,`THE END`], [{name: `Restart Game`, effect: () => {player.inventory.egg = 10; reset();}}]);
 const owainTranslateTablet = new storyPart(`11b`,[``,`You and Owain approach the tablet and Owain translates=s what it says on a piece of paper before showing you and Kameron`,`It reads: ‘SGRIOBHADAIR, MASTER OF THE BLESSED TOWER. HE WILL SAVE US ALL FROM THE LIMITATIONS OF THIS WORLD.’`, `Owain: “It seems that we have found our target.”`, `Kameron: “It seems Sgri- Sgior- Sgribada-”`, `It seems Kameron is having trouble pronouncing the name so you decide to help him.`, `You (whispering to Kameron): “It’s pronounced s̪kɾiːvətɛɾ”`, `Kameron: “Ahem!” “It seems Sgriobhadair is the source of these rampaging monsters.”`, `Owain: “So our destination is the tower in the distance.”`, `Owain: “Let’s rest up and prepare for the journey ahead.”`, `The three of you set up camp next to the tablet.`, `After checking your gear you finally have some time to yourself and you think about the journey ahead.`, `You begin to question whether you really want to fight an unknown monster beyond anything you have ever seen just to get some information on your horse.`, `You: ‘Is this really all worth it?’`, `You: ‘I know that Owain is the only lead I have to find Korai, but is it really viable to fight some unknown beast just for my Horse?’`, `You begin to doubt yourself.`],[{name: `Question it`, effect: () => moveTo(questionJourneyOwain)},{name: `Ignore your doubts`, effect: () => moveTo(restBeforeTowerOwain)}]);
 const questionJourneyOwain = new storyPart(`11aa`, [``,`After checking your gear you finally have some time to yourself and you think about the journey ahead.`,`You begin to question whether you really want to fight an unknown monster beyond anything you have ever seen just to get some information on your horse.`], [{name: "Question the journey", effect: ()=> moveTo(questionJourney1Owain)}], [{name: "Ignore your doubts", effect: ()=> moveTo(restBeforeTowerOwain)}])
 const questionJourney1Owain = new storyPart(`11ab`,[``,`You: ‘I mean I love Korai, but I might actually die if I continue forward.’`],[{name: `Question it even more`, effect: () => moveTo(questionJourney2Owain)},{name: `Ignore your doubts`, effect: () => moveTo(restBeforeTowerOwain)}]);
@@ -197,6 +199,7 @@ const towerEntranceOwain = new storyPart(`12b`,[``,`As you arrive at the tower O
 const afterBeastFightOwain = new storyPart(`13b`,[``,`No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Kameron has been going all out while buffed by Owain holding back the beast all by himself.`, `Finally, Kameron hits the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “OWAIN TAKE GUY AND FINISH THIS!"`, `Owain: “All right."`, `Owain casts one last buff on Kameron and uses his magic to grab you and run towards the tower.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Owain does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronOwain)}]);
 const ripKameronOwain = new storyPart(`14b`,[``,`After being given some time to grieve Owain urges you to continue.`,`Owain: “I can offer no words of consolation, but the end is near. Let's finish this.”`, `Owain: “For Kameron.”`],[{name: `For Kameron`, effect: () => moveTo(inTheTowerOwain)}]);
 const inTheTowerOwain = new storyPart(`15b`,[``,`The door to the outside world won’t open and it urges you to continue forward.`,`You and Owain continue into the tower.`,`You reach a room filled with the remains of unfortunate adventurers you entered the tower.`,`On the wall to the right there appears to be a map of a maze and in front of you there is a dark corridor.`,`Owain: “It appears that the way forward is blocked by a maze.”`,`You: “Luckily, it seems we aren’t the first here.”`,`Owain: “Yes. These men seemed to have tested out the maze for us. How fortunate for us!”`,`You: “As long as we keep these instructions in mind we should be able to reach Sgriobhadair.”`],[{name: `Venture into the maze`, effect: () => moveTo(instructionsOwain)}]);
+const backToBeginningOwain = new storyPart(`15b`,[``,`After the battle, you and Owain are pushed to the beginning of the maze.`],[{name: `Go to the Instructions`, effect: () => moveTo(instructionsOwain)}]);
 const instructionsOwain = new storyPart(`15ba`,[``,`The instructions are...`,`At the first fork go right, then continue forward until you are met with only two paths.`, `Go left twice, then right once more.`, `Finally you must go straight until you see the end.`, `Are you ready?`],[{name: `Yes`, effect: () => moveTo(maze1Owain)},{name: `No, I need to review again`, effect: () => moveTo(instructionsOwain)}]);
 const maze1Owain = new storyPart(`16b`,[``,`You enter the maze and are met with a fork in the paths`,`You can go right, forward, or left.`],[{name: `Go right`, effect: () => moveTo(maze2Owain)},{name: `Go Forward`, effect: () => Fight(mazeFight)}, {name: `Go left`, effect: ()=> Fight(mazeFight)}]);
 const maze2Owain = new storyPart(`16ba`,[``,`You continue right and are met with another three way split in the path.`,`You can go right, forward, or left`], [{name: `Go right`, effect: () => Fight(mazeFight)},{name: `Go Forward`, effect: () => moveTo(maze3Owain)}, {name: `Go left`, effect: ()=> Fight(mazeFight)}]);
@@ -229,7 +232,7 @@ const knowledgeGain11Owain = new storyPart(`E9b`,[``,`Time passes and you feel y
 const trueBossOwain = new storyPart(`HorseB`,[``,`You examine the lock on the door and after thinking for a while you think to pull out the fish you got at the beginning of your journey.`,`You didn't think it would work, but to your surprise the fish glows and floats out of your hands.`, `The shed door opens and the fish disappears.`, `	Beyond the door you see something that shakes you to your very core.`],[{name: `Continue`, effect: () => moveTo(betrayalOwain)}]);
 const betrayalOwain = new storyPart(`HorseBA`,[``,`???: “Welcome Guy.”`,`Before you sits a horse on a throne. He appears to know you, and you fear that you know why.`, `You: “Korai?”`, `Korai: “Yes, that is the name you gave me all those years ago.”`, `Korai: “But I prefer my true name: Sgriobhadair!”`, `!!!!!!!!!!`, `You: “But …. How?”`, `Sgriobhadair: “Didn’t you ever find it weird?”`, `Sgriobhadair: “The unnatural intelligence I displayed, my ability to remain in my prime despite living almost ten years longer than every other horse.”`, `Sgriobhadair: “Didn’t you ever have even a sliver of doubt even after everything you have seen that maybe this was all orchestrated by me GUY!?!?!?”`, `Sgriobhadair: “Of course I did not expect you to find my key so effortlessly, but I have prepared myself to kill you ever since.”`, `Owain: “Guy, what is going on?”`, `You: “That’s Korai, my horse.”`, `Owain: “And he says he’s behind everything that has been happening lately?”`, `You: “... yes.”`,`Owain: “Then there is no time to hesitate, let’s finish this.”`, `Confused, you draw your sword and point it at Korai - no Sgriobhadair.`],[{name: `Fight`, effect: () => Fight(trueBoss)}]);
 const trueBossLoseOwain = new storyPart(`E10b`,[``,`You and Owain fall to Sgriobhadair and fall unconscious.`,`As you awaken you find yourselves unable to control your own body.`, `Sgriobhadair: “I was planning to slowly take control of who I needed over the next hundred years but you guys are quite the splendid surprise.”`, `You and Owain once again fall unconscious.`, `The next time you awake you are surrounded by flames.`,`Under Sgriobhadair’s command you plunge the world into chaos.`, `THE END`],[{name: `Restart game`, effect: () => reset()}]);
-const trueBossWinOwen = new storyPart(`E11b`,[``,`After a long battle you finally beat Sgriobhadair.`,`Sgriobhadair’s face scrunches in annoyance and frustration as he charges at you one last time while raising his magical power.`, `You: “HE'S GOING TO BLOW HIMSELF UP!”`, `You and Owain run to the door but you can’t leave.`, `Owain turns around and prepares his magic.`, `Owain picks Sgrioghadair up with his spell and throws him as hard as he can against the wall.`, `Sgriobhadair breaks through the wall and falls to the ground below the tower, he blows up leaving no one harmed.`, `You take a moment to relive the good memories you and with Korai.`, `As you leave the tower you see the remnants of Kameron’s battle with the beast.`, `A huge corpse lay still, and Kameron is nowhere to be seen.`, `You silently thank your Mentor and head back with the knights.`, `You return to town and Owain offers you a position as a detective, but you refuse.`, `You vow to never let something like this happen again under your watch and spend the rest of your days acting as the world’s hero and protector.`, `THE END`],[{name: `Restart game`, effect: () => reset()}]);
+const trueBossWinOwain = new storyPart(`E11b`,[``,`After a long battle you finally beat Sgriobhadair.`,`Sgriobhadair’s face scrunches in annoyance and frustration as he charges at you one last time while raising his magical power.`, `You: “HE'S GOING TO BLOW HIMSELF UP!”`, `You and Owain run to the door but you can’t leave.`, `Owain turns around and prepares his magic.`, `Owain picks Sgrioghadair up with his spell and throws him as hard as he can against the wall.`, `Sgriobhadair breaks through the wall and falls to the ground below the tower, he blows up leaving no one harmed.`, `You take a moment to relive the good memories you and with Korai.`, `As you leave the tower you see the remnants of Kameron’s battle with the beast.`, `A huge corpse lay still, and Kameron is nowhere to be seen.`, `You silently thank your Mentor and head back with the knights.`, `You return to town and Owain offers you a position as a detective, but you refuse.`, `You vow to never let something like this happen again under your watch and spend the rest of your days acting as the world’s hero and protector.`, `THE END`],[{name: `Restart game`, effect: () => reset()}]);
 
 
 
@@ -455,13 +458,28 @@ function fightWin(storyFight){
         moveTo(firstFightWin);
     } else if (storyFight.monster.ending === 2){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(bossWinChad); 
+        }
+        if(player.companion == 2){
+            moveTo(bossWinOwain); 
+        }
     } else if (storyFight.monster.ending === 3){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(trueBossWinChad); 
+        }
+        if(player.companion == 2){
+            moveTo(trueBossWinOwain); 
+        }
     } else if (storyFight.monster.ending === 4){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(backToBeginningChad); 
+        }
+        if(player.companion == 2){
+            moveTo(backToBeginningOwain); 
+        }
     } else {
         document.getElementById("textDisplay").textContent = ``;
         player.money += 4;
@@ -474,7 +492,15 @@ function fightWin(storyFight){
         if (currentPart.order == `8a`){
             moveTo(wastelandFightChadWin)
         }
-        
+        if (currentPart.order == `8b`){
+            moveTo(wastelandFightOwainWin)
+        }
+        if (currentPart.order == `10a`){
+            moveTo(ruinedTownFightWin)
+        }
+        if (currentPart.order == `10b`){
+            moveTo(stoneTabletFightWin)
+        }
     }
     update();
 }
@@ -488,13 +514,28 @@ function fightLose(storyFight){
         moveTo(secondRight);
     } else if (storyFight.monster.ending === 2){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(bossLoseChad); 
+        }
+        if(player.companion == 2){
+            moveTo(bossLoseOwain); 
+        }
     } else if (storyFight.monster.ending === 3){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(trueBossLoseChad); 
+        }
+        if(player.companion == 2){
+            moveTo(trueBossLoseOwain); 
+        }
     } else if (storyFight.monster.ending === 4){
         document.getElementById("textDisplay").textContent = ``;
-        moveTo();
+        if(player.companion == 1){
+            moveTo(bossWinChad); 
+        }
+        if(player.companion == 2){
+            moveTo(bossWinOwain); 
+        }
     }else {
         document.getElementById("textDisplay").textContent = ``;
         player.health = 1;
@@ -503,12 +544,20 @@ function fightLose(storyFight){
             moveTo(youSuckEndingOwain);
         }
         if (player.losses >= 2 && player.companion == 1) {
-            moveTo(youSuckEndingChad)
+            moveTo(youSuckEndingChad);
         }
         if (currentPart.order == `8a`){
-            moveTo(wastelandFightChadLose)
+            moveTo(wastelandFightChadLose);
         }
-
+        if (currentPart.order == `8b`){
+            moveTo(wastelandFightOwainLose);
+        }
+        if (currentPart.order == `10a`){
+            moveTo(ruinedTownFightLose);
+        }
+        if (currentPart.order == `10b`){
+            moveTo(stoneTabletFightLose);
+        }
     }
 
 }
@@ -618,6 +667,7 @@ function egg(){
     document.getElementById(`eggDisplay`).style.zIndex = 70;
     playerStats.style.opacity = 0;
     inventoryDisplay.style.opacity = 0;
+    document.getElementById(`fullPlayerInfo`).style.zIndex = -500;
 
     let eggtml =``
     let width = Number(window.innerWidth);
@@ -637,6 +687,9 @@ function egg(){
                 document.getElementById(`buttonDisplay`).style.opacity = 1;
                 document.getElementById(`eggDisplay`).style.zIndex = -1;
                 document.getElementById(`playerStats`).style.opacity = 1;
+                inventoryDisplay.style.zIndex = 5;
+                playerStats.style.zIndex = 5;
+                document.getElementById(`fullPlayerInfo`).style.zIndex = 5
                 moveTo(afterEggs);
                 player.companion = 2;
                 for(let i = 0; i < 10; i++){
