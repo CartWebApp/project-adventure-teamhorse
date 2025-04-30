@@ -136,7 +136,7 @@ const questionJourney5Chad = new storyPart(`11af`,[``,`You: ‘Heck, like Kamero
 const runAwayEndingChad = new storyPart(`E4a`,[``,`As you continue to question the journey ahead you realize that risking your life for a horse past its prime is not really worth it.`,`You gather your things and prepare to sneak out in the middle of the night.`, `Once all of the knights have fallen asleep you leave them and Kameron behind and head back to town.`, `A week passes and you finally arrive at town feeling refreshed.`, `You spend the rest of your days in the town and marry a beautiful woman and have three children.`, `THE END`],[{name: `Restart game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Go back`, effect: () => moveTo(questionJourneyChad)}]);
 const restBeforeTowerChad = new storyPart(`11ag`,[``,`Despite your concerns you decide to not question the viability of this journey any longer.`,`After all, this is all for your beloved and innocent horse.`, `You head off to bed prepared for the journey ahead.`],[{name: `Continue`, effect: () => {player.telepathy = 4; player.health = 5; moveTo(towerEntranceChad)}}]);
 const towerEntranceChad = new storyPart(`12a`,[``,`As dawn broke you, Kameron, and the knights all steel yourselves before heading off to the tower.`,`As you arrive at the tower the knights inspect the perimeter and you and Kameron use your telepathy to detect any nearby enemies.`, `The coast is clear.`, `You approach the entrance to the tower and place your hands on the large doors to open them.`, `They creak open and-`, `Kameron: “GUY! STOP! SOMETHING”S COMING!”`, `At Kameron’s warning your telepathic powers begin to flare up`, `You detect something akin to pure hatred.`, `But…`, `You: “There’s nothing?”`, `Then, the sky darkened, bleeding into a shadowed hue, and from the depths of that gloom, a shape loomed.`, `An impossible, grotesque semblance of a mountain, staggering and unearthly in its motion.`, `Its movements distorted that which existed around it.`, `It did not approach with sound; it was a thing of silence, a soundless behemoth drawing nearer.`, `It was so large that your eyes began to betray you as you tried to calculate its size.`, `Just moments ago it appeared to be a colossal mountain, but now it felt as though you were simply staring at the shadow of a larger being.`, `There is nowhere to run.`, `And it spoke to you.`, `The Beast: "You know, I'm not even mad. I'm just disapointed. *siiiiiigggggghhhhhh* I have things to do today, let's get this over with *ssssiiiiiigggghhhh*"`],[{name: `Fight`, effect: () => Fight(beastFight)}]);
-const afterBeastFightChad = new storyPart(`13a`,[``,`No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Chad and Kameron have been going all out holding back the beast all by themselves.`, `Finally, Chad and Kameron hit the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “CHAD! TAKE YOUR KNIGHTS AND GUY AND FINISH THIS!”`, `Chad von Chad: “All right!”`, `Chad leads his knights inside and grabs you as he runs.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Chad does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronChad)}]);
+const afterBeastFightChad = new storyPart(`13a`,[``,` No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Chad and Kameron have been going all out holding back the beast all by themselves.`, `Finally, Chad and Kameron hit the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “CHAD! TAKE YOUR KNIGHTS AND GUY AND FINISH THIS!”`, `Chad von Chad: “All right!”`, `Chad leads his knights inside and grabs you as he runs.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Chad does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronChad)}]);
 const ripKameronChad = new storyPart(`14a`,[``,`After being given some time to grieve Chad urges you to continue.`,`Chad von Chad: “I know your pain, but the end is near. Let's finish this.”`, `Chad von Chad: “For Kameron.”`],[{name: `For Kameron`, effect: () => {player.telepathy = 4; player.health = 5;moveTo(inTheTowerChad)}}]);
 const inTheTowerChad = new storyPart(`15a`,[``,`The door to the outside world won’t open and it urges you to continue forward.`,`You Chad, and a few other knights continue deeper into the tower.`, `You reach a room filled with the remains of unfortunate adventurers you entered the tower.`, `On the wall to the right there appears to be a map of a maze and in front of you there is a dark corridor.`, `Chad von Chad: “It appears that the way forward is blocked by a maze.”`, `You: “Luckily, it seems we have recieved help from our predecessors.”`, `Chad von Chad: “Yes. These brave men sacrificed themselves to create a map of the maze.”`, `You see a list of instructions carved into the walls.`, `The instructions are as follows:`, `At the first fork go right, then continue forward until you are met with only two paths.`, `Go left twice, then right once more.`, `Finally you must go straight until you see the end.`, `You finish reading the instructions and look towards the maze.`],[{name: `Enter maze`, effect: () => moveTo(maze1Chad)},{name: `Review Instructions`, effect: () => moveTo(instructionsChad)}]);
 const backToBeginningChad = new storyPart(`15a`,[``,`After the battle, you and Chad are pushed to the beginning of the maze.`],[{name: `Go to the Instructions`, effect: () => moveTo(instructionsChad)}]);
@@ -196,8 +196,8 @@ const questionJourney4Owain = new storyPart(`11ae`,[``,`You: ‘Even if I couldn
 const questionJourney5Owain = new storyPart(`11af`,[``,`You: ‘Heck, like Kameron said, Korai is way beyond the age a normal horse should be able to live.’`,`You: ‘There’s no guarantee that Korai hasn’t passed away somewhere or won’t pass away soon after I find him.’`],[{name: `Run away`, effect: () => moveTo(runAwayEndingOwain)}]);
 const runAwayEndingOwain = new storyPart(`E4b`,[``,`As you continue to question the journey ahead you realize that risking your life for a horse past its prime is not really worth it.`,`You gather your things and prepare to sneak out in the middle of the night.`, `Once Owain and Kameron have fallen asleep you leave them behind and head back to town.`, `A week passes and you finally arrive at town feeling refreshed.`, `You spend the rest of your days in the town and marry a beautiful woman and have three children.`, `THE END`],[{name: `Restart game`, effect: () => {player.inventory.egg = 10; reset();}},{name: `Go back`, effect: () => moveTo(questionJourneyOwain)}]);
 const restBeforeTowerOwain = new storyPart(`11bg`,[``,`Despite your concerns you decide to not question the viability of this journey any longer.`,`After all, this is all for your beloved and innocent horse.`, `You head off to bed prepared for the journey ahead.`],[{name: `Continue`, effect: () => {player.telepathy = 8; player.health = 5; moveTo(towerEntranceOwain)}}]);
-const towerEntranceOwain = new storyPart(`12b`,[``,`As you arrive at the tower Owain inspects the perimeter with magic and you and Kameron use your telepathy to detect any nearby enemies.`,`The coast is clear.`, `You approach the entrance to the tower and place your hands on the large doors to open them.`, `They creak open and-`, `Kameron: “GUY! STOP! SOMETHING”S COMING!”`, `At Kameron’s warning your telepathic powers begin to flare up.`, `You detect something akin to pure hatred.`, `But…`, `You: “There’s nothing?”`, `Then, the sky darkened, bleeding into a shadowed hue, and from the depths of that gloom, a shape loomed.`, `An impossible, grotesque semblance of a mountain, staggering and unearthly in its motion.`, `Its movements distorted that which existed around it.`, `It did not approach with sound; it was a thing of silence, a soundless behemoth drawing nearer.`, `It was so large that your eyes began to betray you as you tried to calculate its size.`, `Just moments ago it appeared to be a colossal mountain, but now it felt as though you were simply staring at the shadow of a larger being.`, `There is nowhere to run.`, `You must fight.`],[{name: `Fight`, effect: () => Fight(beastFight)}]);
-const afterBeastFightOwain = new storyPart(`13b`,[``,`No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Kameron has been going all out while buffed by Owain holding back the beast all by himself.`, `Finally, Kameron hits the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “OWAIN TAKE GUY AND FINISH THIS!"`, `Owain: “All right."`, `Owain casts one last buff on Kameron and uses his magic to grab you and run towards the tower.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Owain does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronOwain)}]);
+const towerEntranceOwain = new storyPart(`12b`,[``,`As you arrive at the tower Owain inspects the perimeter with magic and you and Kameron use your telepathy to detect any nearby enemies.`,`The coast is clear.`, `You approach the entrance to the tower and place your hands on the large doors to open them.`, `They creak open and-`, `Kameron: “GUY! STOP! SOMETHING”S COMING!”`, `At Kameron’s warning your telepathic powers begin to flare up.`, `You detect something akin to pure hatred.`, `But…`, `You: “There’s nothing?”`, `Then, the sky darkened, bleeding into a shadowed hue, and from the depths of that gloom, a shape loomed.`, `An impossible, grotesque semblance of a mountain, staggering and unearthly in its motion.`, `Its movements distorted that which existed around it.`, `It did not approach with sound; it was a thing of silence, a soundless behemoth drawing nearer.`, `It was so large that your eyes began to betray you as you tried to calculate its size.`, `Just moments ago it appeared to be a colossal mountain, but now it felt as though you were simply staring at the shadow of a larger being.`, `There is nowhere to run.`, `And it spoke to you.`, `The Beast: "You know, I'm not even mad. I'm just disapointed. *siiiiiigggggghhhhhh* I have things to do today, let's get this over with *ssssiiiiiigggghhhh*"`],[{name: `Fight`, effect: () => Fight(beastFight)}]);
+const afterBeastFightOwain = new storyPart(`13b`,[``,` No matter what you do you can’t seem to injure the beast.`,`In fact the only reason you're alive is because Kameron has been going all out while buffed by Owain holding back the beast all by himself.`, `Finally, Kameron hits the beast hard enough to stagger it, giving you a moment to breathe.`, `Kameron: “HEAD INSIDE THE TOWER!” “OWAIN TAKE GUY AND FINISH THIS!"`, `Owain: “All right."`, `Owain casts one last buff on Kameron and uses his magic to grab you and run towards the tower.`, `You realize too late that Kameron intends to hold back the beast all by himself so that you can finish the journey.`, `You: “WAIT!”`, `You struggle but Owain does not let you go.`, `You: “KAMERON!”`, `Kameron faces the beast as it regains its posture.`, `It looked like a speck of dust trying to erode a mountain.`, `Just before the door to the tower closed Kameron turned around.`, `He smiles at you.`, `Kameron: “GUY! FIND THAT HORSE OF YOURS AND LIVE A GOOD LIFE!”`, `The tower door shuts and Kameron leaves your sight.`, `This will be the last time to see Kameron.`],[{name: `Continue`, effect: () => moveTo(ripKameronOwain)}]);
 const ripKameronOwain = new storyPart(`14b`,[``,`After being given some time to grieve Owain urges you to continue.`,`Owain: “I can offer no words of consolation, but the end is near. Let's finish this.”`, `Owain: “For Kameron.”`],[{name: `For Kameron`, effect: () => {player.telepathy = 8; player.health = 5;moveTo(inTheTowerOwain)}}]);
 const inTheTowerOwain = new storyPart(`15b`,[``,`The door to the outside world won’t open and it urges you to continue forward.`,`You and Owain continue into the tower.`,`You reach a room filled with the remains of unfortunate adventurers you entered the tower.`,`On the wall to the right there appears to be a map of a maze and in front of you there is a dark corridor.`,`Owain: “It appears that the way forward is blocked by a maze.”`,`You: “Luckily, it seems we aren’t the first here.”`,`Owain: “Yes. These men seemed to have tested out the maze for us. How fortunate for us!”`,`You: “As long as we keep these instructions in mind we should be able to reach Sgriobhadair.”`],[{name: `Venture into the maze`, effect: () => moveTo(instructionsOwain)}]);
 const backToBeginningOwain = new storyPart(`15b`,[``,`After the battle, you and Owain are pushed to the beginning of the maze.`],[{name: `Go to the Instructions`, effect: () => moveTo(instructionsOwain)}]);
@@ -246,14 +246,16 @@ function Fight(storyFight){
     if(turnNumber == 1){
         textType(document.getElementById("textDisplay"), storyFight.dialogue);
     }
+    if(storyFight == beastFight){
+        background.style.backgroundImage = `url(/images/THEBEAST.png)`
+    }
     if((turnNumber == 5) && (storyFight == beastFight)){
+        body.addEventListener("click",advanceDialogue);
+        document.getElementById("buttonDisplay").innerHTML = "";
         inCombat = false;
         turnNumber = 0;
-        if(storyFight.companion == 1){
-            moveTo(afterBeastFightChad);
-        } else if(storyFight.companion == 2){
-            moveTo(afterBeastFightChad);
-        }
+        fightLose(beastFight)
+        return;
     }
     storyFight.companion = player.companion;
     let buttonHtml = ``;
@@ -538,7 +540,15 @@ function fightLose(storyFight){
         if(player.companion == 2){
             moveTo(bossWinOwain); 
         }
-    }else {
+    }else if (storyFight.monster.ending === 5){
+        document.getElementById("textDisplay").textContent = ``;
+        if(player.companion == 1){
+            moveTo(afterBeastFightChad); 
+        }
+        if(player.companion == 2){
+            moveTo(afterBeastFightOwain); 
+        }
+    }{
         document.getElementById("textDisplay").textContent = ``;
         player.health = 1;
         player.losses += 1
@@ -559,7 +569,8 @@ function fightLose(storyFight){
         }
         if (currentPart.order == `10b`){
             moveTo(stoneTabletFightLose);
-        }
+        };
+
     }
 
 }
@@ -850,7 +861,16 @@ function changeBackgroundTo(nextPart){
         background.style.backgroundImage = `url(/images/ruinedTown.jpg)`
     } else if((nextPart == towerEntranceChad)|| (nextPart == towerEntranceOwain)){
         background.style.backgroundImage = `url(/images/EVILTOWER.jpg)`
-    }
+        if(currentDialogueNumber >= 15){
+            background.style.backgroundImage = `url(/images/THEBEAST.png)`
+        }
+        if(currentDialogueNumber >= 17){
+            background.style.backgroundImage = `url(/images/THEBEAST.png)`
+            document.getElementById(`color`).style.background = `rgb(56, 56, 56)`;
+        }
+    } else if((nextPart == youSuckEndingChad2)|| (nextPart == youSuckEndingOwain2)){
+        background.style.backgroundImage = `url(/images/firstTown.jpeg)`
+    } 
 }
 
 function preload_image(im_url) {
