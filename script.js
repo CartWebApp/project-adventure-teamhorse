@@ -1,4 +1,4 @@
-const images = [`/images/titleImage.jpeg`,`/images/path.jpg`,`/images/Riverside.jpg`,`/images/forest.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/Kameron.jpg`,`/images/shop.jpg`,`/images/healthPotion.png`,`/images/shieldPotion.png`,`/images/secondTown.jpeg`,`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/magicTrick.jpeg`,`/images/Owain.png`,`/images/Owainhouse.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/stoneTablet.jpg`,`/images/THEBEAST.png`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`]
+const images = [`/images/titleImage.jpeg`,`/images/path.jpg`,`/images/Riverside.jpg`,`/images/forest.jpg`,`/images/firstTown.jpeg`,`/images/firstTownKnightCommander.jpeg`,`/images/firstTownKnightGuild.jpeg`,`/images/Kameron.jpg`,`/images/shop.jpg`,`/images/healthPotion.png`,`/images/shieldPotion.png`,`/images/secondTown.jpeg`,`/images/bossDoor.jpeg`,`/images/chadKnightGuild.jpeg`,`/images/ChadVonChad.png`,`/images/egg.png`,`/images/evilTower.jpg`,`/images/fakeSgriobhadair.jpg`,`/images/magicTrick.jpeg`,`/images/Owain.png`,`/images/Owainhouse.jpg`,`/images/pubInterior.jpg`,`/images/ruinedTown.jpg`,`/images/stoneTablet.jpg`,`/images/THEBEAST.png`,`/images/TowerInterior1.jpg`,`/images/TowerInterior2.jpg`,`/images/trueBossDoor.jpeg`,`/images/trueHorse2.jpg`,`/images/wastelandOutpostCheckpoint.jpeg`,`/images/wastelands.jpeg`,`/images/badEndBoth.jpg`,`/images/knightGoodEnd.jpg`,`/images/omeletOwainGoodEnd.jpg`,`/images/trueBossLoseEnd.jpg`,`/images/trueBossWinEnd.jpg`]
 for (i = 0; i < images.length; i++ ){
     preload_image(images[i])
 }
@@ -870,7 +870,13 @@ function changeBackgroundTo(nextPart){
         }
     } else if((nextPart == youSuckEndingChad2)|| (nextPart == youSuckEndingOwain2)){
         background.style.backgroundImage = `url(/images/firstTown.jpeg)`
-    } 
+    } else if((nextPart == inTheTowerChad) || (nextPart == backToBeginningChad) || (nextPart == inTheTowerOwain) || (nextPart == backToBeginningOwain)){
+        background.style.backgroundImage = `url(/images/TowerInterior1.jpg)`
+    } else if((nextPart == lavishBossDoorChad)|| (nextPart == lavishBossDoorOwain)){
+        background.style.backgroundImage = `url(/images/bossDoor.jpeg)`
+    } else if((nextPart == shedDoorChad)|| (nextPart == shedDoorOwain)){
+        background.style.backgroundImage = `url(/images/trueBossDoor.jpeg)`
+    }
 }
 
 function preload_image(im_url) {
