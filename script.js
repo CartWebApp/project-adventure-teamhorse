@@ -248,6 +248,8 @@ function Fight(storyFight){
     }
     if(storyFight == beastFight){
         background.style.backgroundImage = `url(/images/THEBEAST.png)`
+    } else if(storyFight == bossFight){
+        background.style.backgroundImage = `url(/images/fakeSgriobhadair.jpg)`
     }
     if((turnNumber == 5) && (storyFight == beastFight)){
         body.addEventListener("click",advanceDialogue);
@@ -876,6 +878,24 @@ function changeBackgroundTo(nextPart){
         background.style.backgroundImage = `url(/images/bossDoor.jpeg)`
     } else if((nextPart == shedDoorChad)|| (nextPart == shedDoorOwain)){
         background.style.backgroundImage = `url(/images/trueBossDoor.jpeg)`
+    } else if((nextPart == bossChad)|| (nextPart == bossOwain)){
+        if(currentDialogueNumber >= 3){
+            background.style.backgroundImage = `url(/images/fakeSgriobhadair.jpg)`
+        }
+    } else if((nextPart == bossLoseChad)|| (nextPart == bossLoseOwain)){
+        background.style.backgroundImage = `url(/images/badEndBoth.jpg)`
+    } else if((nextPart == bossWinChad)|| (nextPart == bossWinOwain)){
+        background.style.backgroundImage = `url(/images/horse.jpg)`
+    } else if((nextPart == bossEndChad)){
+        background.style.backgroundImage = `url(/images/knightGoodEnd.jpg)`
+    } else if((nextPart == bossEndOwain)){
+        background.style.backgroundImage = `url(/images/Owainhouse.jpg)`
+    } else if((nextPart == betrayalChad)|| (nextPart == betrayalOwain)){
+        background.style.backgroundImage = `url(/images/trueHorse2.jpg)`
+    } else if((nextPart == trueBossLoseChad)|| (nextPart == trueBossLoseOwain)){
+        background.style.backgroundImage = `url(/images/trueBossLoseEnd.jpg)`
+    } else if((nextPart == trueBossWinChad)|| (nextPart == trueBossWinOwain)){
+        background.style.backgroundImage = `url(/images/trueBossWinEnd.jpg)`
     }
 }
 
