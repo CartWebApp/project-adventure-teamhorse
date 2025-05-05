@@ -26,6 +26,27 @@
     min-height: 100vh;
 }
 
+#history {
+    position: absolute;
+    background-color: black;
+    cursor: pointer;
+    border: white solid 1px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3em;
+    height: 3em;
+    margin-right: 5.5vw;
+    margin-top: 1vh;
+    align-self: flex-end;
+}
+
+
+#history img {
+    filter: invert(100);
+}
+
 body {
     display: flex;
     flex-direction: column;    
