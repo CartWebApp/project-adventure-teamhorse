@@ -40,8 +40,29 @@
     margin-right: 5.5vw;
     margin-top: 1vh;
     align-self: flex-end;
+    transition: all 0.5s;
+    opacity: 0;
 }
 
+#historyDisplay{
+    opacity: 0;
+    position: absolute;
+    background-color: black;
+    border: white solid 1px;
+    border-radius: 0rem 0rem 0rem 0.5rem;
+    width: 25vw;
+    height: 10em;
+    margin-right: 5.5vw;
+    margin-top: 4.8vh;
+    align-self: flex-end;
+    max-height: 10vh;
+    overflow-y: scroll;
+    transition: all 0.5s;
+}
+
+#historyDisplayText {
+    color: white;
+}
 
 #history img {
     filter: invert(100);

@@ -590,10 +590,23 @@ document.getElementById(`startButton`).addEventListener(`click`, () =>{
     playerStats.style.opacity = 1;
     document.getElementById(`fullTextBox`).style.opacity = 1;
     document.getElementById(`title`).style.opacity = 0;
+    document.getElementById(`history`).style.opacity = 1;
+    document.getElementById(`history`).addEventListener(`click`, (h) =>{
+        let historyDisp = document.getElementById(`historyDisplay`);
+        if(historyDisp.style.opacity == 0){
+            historyDisp.style.opacity = 1;
+            document.getElementById(`history`).style.borderRadius = `0.5rem 0.5rem 0rem 0rem`
+            document.getElementById(`history`).style.width = `25.1vw`;
+        } else {
+            historyDisp.style.opacity = 0;
+            document.getElementById(`history`).style.borderRadius = `0.5rem`;
+            document.getElementById(`history`).style.width = `3em`;
+        }
+        updateHistory()
+    });
     moveTo(beginning);
 })
 
-textType(document.getElementById("textDisplay"), currentPart.dialogue[0]);
 function advanceDialogue(){
     body.removeEventListener("click",advanceDialogue);
     arrow.style.opacity = 0;
@@ -719,6 +732,7 @@ function moveTo(nextPart){
     document.getElementById("buttonDisplay").innerHTML = "";
     console.log(currentPart)
     advanceDialogue();
+    updateHistory();
 }
 
 function update(){
@@ -869,6 +883,7 @@ function changeBackgroundTo(nextPart){
     } else if((nextPart == youSuckEndingChad2)|| (nextPart == youSuckEndingOwain2)){
         background.style.backgroundImage = `url(/images/firstTown.jpeg)`
     } else if((nextPart == inTheTowerChad) || (nextPart == backToBeginningChad) || (nextPart == inTheTowerOwain) || (nextPart == backToBeginningOwain)){
+        document.getElementById(`color`).style.background = `rgb(0, 0, 0)`
         background.style.backgroundImage = `url(/images/TowerInterior1.jpg)`
     } else if((nextPart == lavishBossDoorChad)|| (nextPart == lavishBossDoorOwain)){
         background.style.backgroundImage = `url(/images/bossDoor.jpeg)`
@@ -894,6 +909,14 @@ function changeBackgroundTo(nextPart){
         background.style.backgroundImage = `url(/images/trueBossWinEnd.jpg)`
     }
 }
+
+function updateHistory(){
+    let text = [];
+    for(let i = 0; i < storyPathRecord.length; i++){
+        text.push(`${i + 1}. ${storyPathRecord[i]} \n`);
+    }
+    document.getElementById(`historyDisplayText`).innerText = text.join(``)
+};
 
 function preload_image(im_url) {
     let img = new Image();
