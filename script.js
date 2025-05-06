@@ -805,10 +805,12 @@ function update(){
         inventoryDisplay.innerHTML = inventoryHtml;
     }
     document.getElementById(`health`).innerText = `Health: ${player.health}`;
+    updateHistory();
     document.getElementById(`money`).innerText = `Money: £${player.money}`;
 }
 
 function reset(){
+    storyPathRecord = [];
     player.attack = 1;
     player.companion = 0;
     player.health = 5;
