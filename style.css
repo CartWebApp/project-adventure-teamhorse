@@ -266,7 +266,7 @@ hr {
 /* on mobile, for media queries, make the arrow position relative and have no left padding to avoid the arrow sliding on the page*/
 /* Also increase egg size */
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 800px) {
     #textBoxArrowContainer {
         position: relative;
         padding-left: 0;
